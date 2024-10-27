@@ -3,7 +3,7 @@
 
 
 ![Static Badge](https://img.shields.io/badge/demo.py-4584b6)
-![Static Badge](https://img.shields.io/badge/version-0.11.29-green)
+![Static Badge](https://img.shields.io/badge/version-0.12a-yellow)
 ![GitHub Created At](https://img.shields.io/github/created-at/almostDemoPy/democord?style=flat)
 ![Discord](https://img.shields.io/discord/1267703591863586858?style=flat)
 ![GitHub License](https://img.shields.io/github/license/almostDemoPy/democord)
