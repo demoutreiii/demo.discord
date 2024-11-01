@@ -102,16 +102,16 @@ class DMChannel:
 
 class GuildChannel:
   @property
-  def guild_id(self) -> Optional[int]:
-    return int(self["id"]) if self.get("id") is not None else None
+  def guild_id(self) -> int:
+    return int(self["id"])
 
   @property
   def id(sself) -> int:
     return int(self["id"])
 
   @property
-  def name(self) -> Optional[str]:
-    return self.get("name")
+  def name(self) -> str:
+    return self["name"]
 
   @property
   def overwrites(self) -> List[PermissionOverwrites]:
@@ -123,8 +123,8 @@ class GuildChannel:
     return self.get("permissions")
 
   @property
-  def position(self) -> Optional[int]:
-    return self.get("position")
+  def position(self) -> int:
+    return self["position"]
 
   @property
   def type(self) -> ChannelType:
@@ -389,9 +389,9 @@ class AnnouncementChannel(GuildChannel):
     return self.get("default_auto_archive_duration", 60)
 
   @property
-  def guild_id(self) -> Optional[int]:
+  def guild_id(self) -> int:
     # retrieve Guild object from cache
-    return int(self["guild_id"]) if self.get("guild_id") is not None else None
+    return int(self["guild_id"])
 
   @property
   def id(self) -> int:
@@ -406,8 +406,8 @@ class AnnouncementChannel(GuildChannel):
     return datetime.fromisoformat(self["last_pin_timestamp"]) if self.get("last_pin_timestamp") is not None else None
 
   @property
-  def name(self) -> Optional[str]:
-    return self.get("name")
+  def name(self) -> str:
+    return self["name"]
 
   @property
   def nsfw(self) -> bool:
@@ -428,8 +428,8 @@ class AnnouncementChannel(GuildChannel):
     return self.get("permissions")
 
   @property
-  def position(self) -> Optional[int]:
-    return int(self["position"]) if self.get("position") is not None else None
+  def position(self) -> int:
+    return int(self["position"])
 
   @property
   def topic(self) -> Optional[str]:
@@ -516,6 +516,37 @@ class AnnouncementChannel(GuildChannel):
 
 
 class CategoryChannel(GuildChannel):
+  @property
+  def guild_id(self) -> int:
+    # retrieve Guild object from cache
+    return int(self["guild_id"])
+
+  @property
+  def id(self) -> int:
+    return int(self["id"])
+
+  @property
+  def name(self) -> str:
+    return self["name"]
+
+  @property
+  def overwrites(self) -> List[PermissionOverwrites]:
+    # implement: PermissionOverwrites
+    raise NotImplementedError
+
+  @property
+  def permissions(self) -> Optional[str]:
+    return self.get("permissions")
+
+  @property
+  def position(self) -> int:
+    return int(self["position"])
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType.category
+
+
   async def create_thread(self) -> None:
     try:
       raise NotImplemented("cannot create thread in a CategoryChannel")
