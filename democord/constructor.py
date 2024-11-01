@@ -75,7 +75,8 @@ class Constructor:
   def channel(data : Dict[str, Any]) -> Union[DMChannel. GuildChannel]:
     from .objects import (
                          AnnouncementChannelObject,
-                         CategoryChannelObject
+                         CategoryChannelObject,
+                         ForumObject
                          )
     try:
       channel_objects : Dict[ChannelType, Union[DMChannel, GuildChannel]] = {
@@ -83,7 +84,7 @@ class Constructor:
         ChannelType.announcement_thread : Thread,
         ChannelType.category            : CategoryChannelObject,
         ChannelType.dm                  : DMChannel,
-        ChannelType.forum               : Forum,
+        ChannelType.forum               : ForumObject,
         ChannelType.group_dm            : DMChannel,
         ChannelType.media               : MediaChannel,
         ChannelType.private_thread      : Thread,
