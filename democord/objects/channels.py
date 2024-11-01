@@ -1,6 +1,7 @@
 from ..channels import (
                        AnnouncementChannel,
                        CategoryChannel,
+                       Forum,
                        GuildChannel
                        )
 from ..types    import (
@@ -39,6 +40,31 @@ class CategoryChannelObject(BaseObject, CategoryChannel):
   permissions           : Optional[str]
   position              : int
   type                  : int                   = 4
+
+
+class ForumObject(BaseObject, Forum):
+  from .emoji     import EmojiObject
+  from .overwrite import OverwriteObject
+  from .tag       import TagObject
+
+  available_tags                     : List[TagObject]       = []
+  default_auto_archive_duration      : int                   = 60
+  default_forum_layout               : Optional[int]
+  default_reaction_emoji             : Optional[EmojiObject]
+  default_sort_order                 : Optional[int]
+  default_thread_rate_limit_per_user : Optional[int]
+  flags                              : Optional[int]
+  guild_id                           : Snowflake
+  id                                 : Snowflake
+  last_message_id                    : Optional[Snowflake]
+  name                               : str
+  nsfw                               : bool                  = False
+  parent_id                          : Optional[Snowflake]
+  permission_overwrites              : List[OverwriteObject] = []
+  permissions                        : Optional[str]
+  position                           : int
+  topic                              : Optional[str]
+  type                               : int                   = 15
 
 
 class GuildChannelObject(BaseObject, GuildChannel):

@@ -32,6 +32,7 @@ from .reqs        import (
                          )
 from .role        import Role
 from .sticker     import Sticker
+from .tag         import Tag
 from .user        import User
 from datetime     import datetime
 from pathlib      import Path
@@ -606,6 +607,86 @@ class CategoryChannel(GuildChannel):
 
 
 class Forum(GuildChannel):
+  @property
+  def available_tags(self) -> List[Tag]:
+    # implement: Tag
+    raise NotImplementedError
+
+  @property
+  def auto_archive_duration(self) -> int:
+    return self.get("default_auto_archive_duration", 60)
+  
+  @property
+  def flags(self) -> Optional[ChannelFlags]:
+    if self.get("flags") is None: return None
+    return ChannelFlags.require_tag
+
+  @property
+  def forum_layout(self) -> Optional[ForumLayout]:
+    if self.get("default_forum_layout") is None: return None
+    return ForumLayout(self["default_forum_layout"])
+
+  @property
+  def guild_id(self) -> int:
+    # retrieve Guild object from cache
+    return int(self["guild_id"])
+
+  @property
+  def id(self) -> int:
+    return int(self["id"])
+
+  @property
+  def last_message_id(self) -> Optional[int]:
+    return int(self["last_message_id"]) if self.get("last_message_id") is not None else None
+
+  @property
+  def name(self) -> str:
+    return self["name"]
+
+  @property
+  def nsfw(self) -> bool:
+    return self.get("nsfw", False)
+
+  @property
+  def overwrites(self) -> List[PermissionOverwrites]:
+    # implement: PermissionOverwrites
+    raise NotImplementedError
+
+  @property
+  def parent_id(self) -> Optional[int]:
+    # retrieve CategoryChannel from cache
+    return int(self["parent_id"]) if self.get("parent_id") is not None else None
+
+  @property
+  def permissions(self) -> Optional[str]:
+    return self.get("permissions")
+
+  @property
+  def position(self) -> int:
+    return self["position"]
+
+  @property
+  def reaction_emoji(self) -> Optional[Emoji]:
+    # implement: Emoji
+    return Constructor.emoji(self["default_reaction_emoji"]) if self.get("default_reaction_emoji") is not None else None
+
+  @property
+  def sort_order(self) -> Optional[ForumSortOrder]:
+    if self.get("default_sort_order") is None: return None
+    return ForumSortOrder(self["default_sort_order"])
+
+  @property
+  def thread_slowmode(self) -> Optional[int]:
+    return self.get("default_thread_rate_limit_per_user")
+
+  @property
+  def topic(self) -> Optional[str]:
+    return self.get("topic")
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType.forum
+
 
   async def create_thread(self, **attributes) -> Thread:
     try:
