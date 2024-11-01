@@ -33,6 +33,7 @@ from .reqs        import (
 from .role        import Role
 from .sticker     import Sticker
 from .user        import User
+from datetime     import datetime
 from pathlib      import Path
 from re           import findall
 from typing       import *
@@ -100,23 +101,34 @@ class DMChannel:
 
 
 class GuildChannel:
-  """
-  Represents a guild channel. This can be further classified as TextChannel, VoiceChannel, ForumChannel, StageChannel, and Thread, when subclassed.
-  """
+  @property
+  def guild_id(self) -> Optional[int]:
+    return int(self["id"]) if self.get("id") is not None else None
 
+  @property
+  def id(sself) -> int:
+    return int(self["id"])
 
-  def __getattribute__(
-    self,
-    attribute : str
-  ) -> Optional[Any]:
-    try:
-      nullables : Dict[ChannelType, List[str]] = {
-        ChannelType.text : []
-      }
-      if attribute in nullables[ChannelType[self.type]]: return self.__dict__.get(attribute)
-      else: return super().__getattribute__(attribute)
-    except Exception as error:
-      if self.ws.app.logger: self.ws.app.logger.error(error)
+  @property
+  def name(self) -> Optional[str]:
+    return self.get("name")
+
+  @property
+  def overwrites(self) -> List[PermissionOverwrites]:
+    # implement: PermissionOverwrites
+    raise NotImplementedError
+
+  @property
+  def permissions(self) -> Optional[str]:
+    return self.get("permissions")
+
+  @property
+  def position(self) -> Optional[int]:
+    return self.get("position")
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType(self["type"])
 
 
   async def create_invite(self, **attributes) -> Invite:
@@ -372,6 +384,61 @@ class GuildChannel:
 
 
 class AnnouncementChannel(GuildChannel):
+  @property
+  def auto_archive_duration(self) -> int:
+    return self.get("default_auto_archive_duration", 60)
+
+  @property
+  def guild_id(self) -> Optional[int]:
+    # retrieve Guild object from cache
+    return int(self["guild_id"]) if self.get("guild_id") is not None else None
+
+  @property
+  def id(self) -> int:
+    return int(self["id"])
+
+  @property
+  def last_message_id(self) -> Optional[int]:
+    return int(self["last_message_id"]) if self.get("last_message_id") is not None else None
+
+  @property
+  def last_pin_timestamp(self) -> Optional[datetime]:
+    return datetime.fromisoformat(self["last_pin_timestamp"]) if self.get("last_pin_timestamp") is not None else None
+
+  @property
+  def name(self) -> Optional[str]:
+    return self.get("name")
+
+  @property
+  def nsfw(self) -> bool:
+    return self.get("nsfw", False)
+
+  @property
+  def parent_id(self) -> int:
+    # retreive CategoryChannel from cache
+    return int(self["parent_id"]) if self.get("parent_id") is not None else None
+
+  @property
+  def overwrites(self) -> List[PermissionOverwrites]:
+    # implement: PermissionOverwrites
+    raise NotImplementedError
+
+  @property
+  def permissions(self) -> Optional[str]:
+    return self.get("permissions")
+
+  @property
+  def position(self) -> Optional[int]:
+    return int(self["position"]) if self.get("position") is not None else None
+
+  @property
+  def topic(self) -> Optional[str]:
+    return self.get("topic")
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType.announcement
+  
 
   async def edit(
     self,

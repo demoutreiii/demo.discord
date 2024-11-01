@@ -1,4 +1,5 @@
-from typing import *
+from typing   import *
 
 
-type Snowflake = str
+type ISO8601Timestamp = str
+type Snowflake        = str

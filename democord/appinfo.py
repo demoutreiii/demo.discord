@@ -21,7 +21,7 @@ class AppInfoFlags(int):
     return self
 
 
-class AppInfo(dict):
+class AppInfo:
   @property
   def approximate_guild_count(self) -> int:
     return self.get("approximate_guild_count", 0)
