@@ -78,7 +78,8 @@ class Constructor:
                          CategoryChannelObject,
                          ForumObject,
                          MediaChannelObject,
-                         StageChannelObject
+                         StageChannelObject,
+                         TextChannelObject
                          )
     try:
       channel_objects : Dict[ChannelType, Union[DMChannel, GuildChannel]] = {
@@ -92,7 +93,7 @@ class Constructor:
         ChannelType.private_thread      : Thread,
         ChannelType.public_thread       : Thread,
         ChannelType.stage               : StageChannelObject,
-        ChannelType.text                : TextChannel,
+        ChannelType.text                : TextChannelObject,
         ChannelType.voice               : VoiceChannel
       }
       channel : Union[DMChannel, GuildChannel] = channel_objects[ChannelType(data["type"])]()

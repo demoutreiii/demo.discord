@@ -1277,6 +1277,70 @@ class StageChannel(GuildChannel):
 
 
 class TextChannel(GuildChannel):
+  @property
+  def auto_archive_duration(self) -> int:
+    return self.get("default_auto_archive_duration", 60)
+
+  @property
+  def guild_id(self) -> int:
+    # retrieve Guild object from cache
+    return int(self["guild_id"])
+
+  @property
+  def id(self) -> int:
+    return int(self["id"])
+
+  @property
+  def last_message_id(self) -> Optional[int]:
+    return int(self["last_message_id"]) if self.get("last_message_id") is not None else None
+
+  @property
+  def last_pin_timestamp(self) -> Optional[datetime]:
+    if self.get("last_pin_timestamp") is None: return None
+    return datetime.fromisoformat(self["last_pin_timestamp"])
+
+  @property
+  def name(self) -> str:
+    return self["name"]
+
+  @property
+  def nsfw(self) -> bool:
+    return self.get("nsfw", False)
+
+  @property
+  def overwrites(self) -> List[PermissionOverwrites]:
+    # implement: PermissionOverwrites
+    raise NotImplementedError
+
+  @property
+  def parent_id(self) -> Optional[int]:
+    # retrieve CategoryChannel from cache
+    return self.get("parent_id")
+
+  @property
+  def permissions(self) -> Optional[str]:
+    return self.get("permissions")
+
+  @property
+  def position(self) -> int:
+    return self["position"]
+
+  @property
+  def slowmode(self) -> Optional[int]:
+    return self.get("rate_limit_per_user")
+
+  @property
+  def thread_slowmode(self) -> Optional[int]:
+    return self.get("default_thread_rate_limit_per_user")
+
+  @property
+  def topic(self) -> Optional[str]:
+    return self.get("topic")
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType.text
+
 
   async def edit(
     self,

@@ -4,7 +4,8 @@ from ..channels import (
                        Forum,
                        GuildChannel,
                        MediaChannel,
-                       StageChannel
+                       StageChannel,
+                       TextChannel
                        )
 from ..types    import (
                        ISO8601Timestamp,
@@ -120,3 +121,23 @@ class StageChannelObject(BaseObject, StageChannel):
   rate_limit_per_user   : Optional[int]
   topic                 : Optional[str]
   type                  : int                   = 13
+
+
+class TextChannelObject(BaseObject, TextChannel):
+  from .overwrite import Overwrite
+
+  default_auto_archive_duration      : int                        = 60
+  default_thread_rate_limit_per_user : Optional[int]
+  guild_id                           : int
+  id                                 : Snowflake
+  last_message_id                    : Optional[Snowflake]
+  last_pin_timestamp                 : Optional[ISO8601Timestamp]
+  name                               : str
+  nsfw                               : bool                       = False
+  parent_id                          : Optional[Snowflake]
+  permission_overwrites              : List[OverwriteObject]      = []
+  permissions                        : Optional[str]
+  position                           : int
+  rate_limit_per_user                : Optional[int]
+  topic                              : Optional[str]
+  type                               : int                        = 0
