@@ -3,7 +3,8 @@ from ..channels import (
                        CategoryChannel,
                        Forum,
                        GuildChannel,
-                       MediaChannel
+                       MediaChannel,
+                       StageChannel
                        )
 from ..types    import (
                        ISO8601Timestamp,
@@ -102,3 +103,20 @@ class MediaChannelObject(BaseObject, MediaChannel):
   position                           : int
   topic                              : Optional[str]
   type                               : int                   = 16
+
+
+class StageChannelObject(BaseObject, StageChannel):
+  from .overwrite import OverwriteObject
+  
+  guild_id              : Snowflake
+  id                    : Snowflake
+  last_message_id       : Optional[int]
+  name                  : str
+  nsfw                  : bool                  = False
+  parent_id             : Optional[int]
+  permission_overwrites : List[OverwriteObject] = []
+  permissions           : Optional[str]
+  position              : int
+  rate_limit_per_user   : Optional[int]
+  topic                 : Optional[str]
+  type                  : int                   = 13

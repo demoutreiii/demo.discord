@@ -1172,6 +1172,59 @@ class MediaChannel(GuildChannel):
 
 class StageChannel(GuildChannel):
 
+  @property
+  def guild_id(self) -> int:
+    return int(self["guild_id"])
+
+  @property
+  def id(self) -> int:
+    return int(self["id"])
+
+  @property
+  def last_message_id(self) -> Optional[int]:
+    if self.get("last_message_id") is None: return None
+    return int(self["last_message_id"])
+
+  @property
+  def name(self) -> str:
+    return self["name"]
+
+  @property
+  def nsfw(self) -> bool:
+    return self.get("nsfw", False)
+
+  @property
+  def overwrites(self) -> List[PermissionOverwrites]:
+    # implement: PermissionOverwrites
+    raise NotImplementedError
+
+  @property
+  def parent_id(self) -> Optional[int]:
+    # retrieve CategoryChannel from cache
+    return self.get("parent_id")
+
+  @property
+  def permissions(self) -> Optional[str]:
+    return self.get("permissions")
+
+  @property
+  def position(self) -> int:
+    return int(self["position"])
+
+  @property
+  def slowmode(self) -> Optional[int]:
+    if self.get("rate_limit_per_user") is None: return None
+    return int(self["rate_limit_per_user"])
+
+  @property
+  def topic(self) -> Optional[str]:
+    return self.get("topic")
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType.stage
+
+
   async def edit(
     self,
     **attributes

@@ -77,7 +77,8 @@ class Constructor:
                          AnnouncementChannelObject,
                          CategoryChannelObject,
                          ForumObject,
-                         MediaChannelObject
+                         MediaChannelObject,
+                         StageChannelObject
                          )
     try:
       channel_objects : Dict[ChannelType, Union[DMChannel, GuildChannel]] = {
@@ -90,7 +91,7 @@ class Constructor:
         ChannelType.media               : MediaChannelObject,
         ChannelType.private_thread      : Thread,
         ChannelType.public_thread       : Thread,
-        ChannelType.stage               : StageChannel,
+        ChannelType.stage               : StageChannelObject,
         ChannelType.text                : TextChannel,
         ChannelType.voice               : VoiceChannel
       }
