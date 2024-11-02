@@ -2,7 +2,8 @@ from ..channels import (
                        AnnouncementChannel,
                        CategoryChannel,
                        Forum,
-                       GuildChannel
+                       GuildChannel,
+                       MediaChannel
                        )
 from ..types    import (
                        ISO8601Timestamp,
@@ -77,3 +78,27 @@ class GuildChannelObject(BaseObject, GuildChannel):
   permissions           : Optional[str]
   position              : int
   type                  : int
+
+
+class MediaChannelObject(BaseObject, MediaChannel):
+  from .emoji     import EmojiObject
+  from .overwrite import OverwriteObject
+  from .tag       import TagObject
+
+  available_tags                     : List[TagObject]       = []
+  default_auto_archive_duration      : int                   = 60
+  default_reaction_emoji             : Optional[EmojiObject]
+  default_sort_order                 : Optional[int]
+  default_thread_rate_limit_per_user : Optional[int]
+  flags                              : Optional[int]
+  guild_id                           : Snowflake
+  id                                 : Snowflake
+  last_message_id                    : Optional[Snowflake]
+  name                               : str
+  nsfw                               : bool                  = False
+  parent_id                          : Optional[Snowflake]
+  permission_overwrites              : List[OverwriteObject] = []
+  permissions                        : Optional[str]
+  position                           : int
+  topic                              : Optional[str]
+  type                               : int                   = 16

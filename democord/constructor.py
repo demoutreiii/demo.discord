@@ -76,7 +76,8 @@ class Constructor:
     from .objects import (
                          AnnouncementChannelObject,
                          CategoryChannelObject,
-                         ForumObject
+                         ForumObject,
+                         MediaChannelObject
                          )
     try:
       channel_objects : Dict[ChannelType, Union[DMChannel, GuildChannel]] = {
@@ -86,14 +87,14 @@ class Constructor:
         ChannelType.dm                  : DMChannel,
         ChannelType.forum               : ForumObject,
         ChannelType.group_dm            : DMChannel,
-        ChannelType.media               : MediaChannel,
+        ChannelType.media               : MediaChannelObject,
         ChannelType.private_thread      : Thread,
         ChannelType.public_thread       : Thread,
         ChannelType.stage               : StageChannel,
         ChannelType.text                : TextChannel,
         ChannelType.voice               : VoiceChannel
       }
-      channel : GuildChannel = channel_objects[ChannelType(data["type"])]()
+      channel : Union[DMChannel, GuildChannel] = channel_objects[ChannelType(data["type"])]()
       channel.__dict__["ws"] : DiscordWebSocket = Constructor.ws
       return channel
     except Exception as error:
