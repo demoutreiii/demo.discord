@@ -79,19 +79,20 @@ class Constructor:
                          ForumObject,
                          MediaChannelObject,
                          StageChannelObject,
-                         TextChannelObject
+                         TextChannelObject,
+                         ThreadObject
                          )
     try:
       channel_objects : Dict[ChannelType, Union[DMChannel, GuildChannel]] = {
         ChannelType.announcement        : AnnouncementChannelObject,
-        ChannelType.announcement_thread : Thread,
+        ChannelType.announcement_thread : ThreadObject,
         ChannelType.category            : CategoryChannelObject,
         ChannelType.dm                  : DMChannel,
         ChannelType.forum               : ForumObject,
         ChannelType.group_dm            : DMChannel,
         ChannelType.media               : MediaChannelObject,
-        ChannelType.private_thread      : Thread,
-        ChannelType.public_thread       : Thread,
+        ChannelType.private_thread      : ThreadObject,
+        ChannelType.public_thread       : ThreadObject,
         ChannelType.stage               : StageChannelObject,
         ChannelType.text                : TextChannelObject,
         ChannelType.voice               : VoiceChannel

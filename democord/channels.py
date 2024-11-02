@@ -1409,6 +1409,73 @@ class TextChannel(GuildChannel):
 
 
 class Thread(GuildChannel):
+  @property
+  def applied_tags(self) -> List[Tag]:
+    # implement: Tag
+    raise NotImplementedError
+
+  @property
+  def flags(self) -> List[ChannelFlags]:
+    return [flag for flag in ChannelFlags if (self.get("flags", 0) & flag.value) == flag.value]
+
+  @property
+  def guild_id(self) -> int:
+    # retrieve Guild object from cache
+    return int(self["guild_id"])
+
+  @property
+  def id(self) -> int:
+    return int(self["id"])
+
+  @property
+  def me(self) -> ThreadMember:
+    # implement: ThreadMember
+    raise NotImplementedError
+
+  @property
+  def member_count(self) -> int:
+    return self.get("member_count", 0)
+
+  @property
+  def message_count(self) -> int:
+    return self.get("message_count", 0)
+
+  @property
+  def metadata(self) -> Optional[ThreadMetadata]:
+    # implement: ThreadMetadata
+    raise NotImplementedError
+
+  @property
+  def name(self) -> str:
+    return self["name"]
+
+  @property
+  def overwrites(self) -> List[PermissionOverwrites]:
+    # implement: PermissionOverwrites
+    raise NotImplementedError
+
+  @property
+  def parent_id(self) -> Optional[int]:
+    # retrieve CategoryChannel object from cache
+    return int(self["parent_id"]) if self.get("parent_id") is not None else None
+
+  @property
+  def position(self) -> int:
+    return self["position"]
+
+  @property
+  def slowmode(self) -> Optional[int]:
+    return self.get("rate_limit_per_user")
+
+  @property
+  def total_message_sent(self) -> int:
+    return self["total_message_sent"]
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType(self["type"])
+
+
   async def add_member(self, member : Member) -> None:
     try:
       if not isinstance(member, Member):

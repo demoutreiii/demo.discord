@@ -5,7 +5,8 @@ from ..channels import (
                        GuildChannel,
                        MediaChannel,
                        StageChannel,
-                       TextChannel
+                       TextChannel,
+                       Thread
                        )
 from ..types    import (
                        ISO8601Timestamp,
@@ -141,3 +142,25 @@ class TextChannelObject(BaseObject, TextChannel):
   rate_limit_per_user                : Optional[int]
   topic                              : Optional[str]
   type                               : int                        = 0
+
+
+class ThreadObject(BaseObject, Thread):
+  from .overwrite       import OverwriteObject
+  from .thread_member   import ThreadMemberObject
+  from .thread_metadata import ThreadMetadataObject
+
+  applied_tags          : List[Snowflake]
+  flags                 : int
+  guild_id              : Snowflake
+  id                    : Snowflake
+  member                : ThreadMemberObject
+  member_count          : int
+  message_count         : int
+  name                  : str
+  parent_id             : Optional[Snowflake]
+  permission_overwrites : List[OverwriteObject]
+  position              : int
+  rate_limit_per_user   : Optional[int]
+  thread_metadata       : Optional[ThreadMetadataObject]
+  total_message_sent    : int
+  type                  : Literal[10, 11, 12]
