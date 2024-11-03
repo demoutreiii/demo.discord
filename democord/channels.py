@@ -44,6 +44,42 @@ if TYPE_CHECKING:
 
 
 class DMChannel:
+  @property
+  def application_id(self) -> Optional[int]:
+    if self.get("application_id") is None: return None
+    return int(self["application_id"])
+
+  @property
+  def icon(self) -> Optional[Asset]:
+    # implement: Asset[GroupDM]
+    raise NotImplementedError
+
+  @property
+  def id(self) -> int:
+    return int(self["id"])
+
+  @property
+  def last_message_id(self) -> Optional[int]:
+    if self.get("last_message_id") is None: return None
+    return int(self["last_message_id"])
+
+  @property
+  def managed(self) -> bool:
+    return self.get("managed", False)
+
+  @property
+  def name(self) -> Optional[str]:
+    return self.get("name")
+
+  @property
+  def recipients(self) -> List[User]:
+    # implement: UserObject
+    raise NotImplementedError
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType(self["type"])
+
   async def close(self, reason : Optional[str] = None) -> Self:
     try:
       response : Dict[str, Any] = self.ws.delete(
@@ -1453,6 +1489,11 @@ class Thread(GuildChannel):
   def overwrites(self) -> List[PermissionOverwrites]:
     # implement: PermissionOverwrites
     raise NotImplementedError
+
+  @property
+  def owner_id(self) -> int:
+    # retrieve UserObject from cache
+    return int(self["owner_id"])
 
   @property
   def parent_id(self) -> Optional[int]:

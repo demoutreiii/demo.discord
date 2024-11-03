@@ -1,6 +1,7 @@
 from ..channels import (
                        AnnouncementChannel,
                        CategoryChannel,
+                       DMChannel,
                        Forum,
                        GuildChannel,
                        MediaChannel,
@@ -45,6 +46,19 @@ class CategoryChannelObject(BaseObject, CategoryChannel):
   permissions           : Optional[str]
   position              : int
   type                  : int                   = 4
+
+
+class DMChannelObject(BaseObject, DMChannel):
+  from .user import UserObject
+
+  application_id  : Optional[Snowflake]
+  icon            : Optional[str]
+  id              : Snowflake
+  last_message_id : Optional[Snowflake]
+  managed         : bool                = False
+  name            : Optional[str]
+  recipients      : List[UserObject]    = []
+  type            : Literal[1, 3]
 
 
 class ForumObject(BaseObject, Forum):
@@ -158,6 +172,7 @@ class ThreadObject(BaseObject, Thread):
   member_count          : int
   message_count         : int
   name                  : str
+  owner_id              : Snowflake
   parent_id             : Optional[Snowflake]
   permission_overwrites : List[OverwriteObject]
   position              : int
