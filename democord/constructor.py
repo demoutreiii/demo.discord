@@ -80,7 +80,8 @@ class Constructor:
                          MediaChannelObject,
                          StageChannelObject,
                          TextChannelObject,
-                         ThreadObject
+                         ThreadObject,
+                         VoiceChannelObject
                          )
     try:
       channel_objects : Dict[ChannelType, Union[DMChannel, GuildChannel]] = {
@@ -95,7 +96,7 @@ class Constructor:
         ChannelType.public_thread       : ThreadObject,
         ChannelType.stage               : StageChannelObject,
         ChannelType.text                : TextChannelObject,
-        ChannelType.voice               : VoiceChannel
+        ChannelType.voice               : VoiceChannelObject
       }
       channel : Union[DMChannel, GuildChannel] = channel_objects[ChannelType(data["type"])]()
       channel.__dict__["ws"] : DiscordWebSocket = Constructor.ws

@@ -1621,6 +1621,80 @@ class Thread(GuildChannel):
 
 
 class VoiceChannel(GuildChannel):
+  @property
+  def bitrate(self) -> int:
+    return self["bitrate"]
+
+  @property
+  def guild_id(self) -> int:
+    # retrieve GuildObject from cache
+    return int(self["guild_id"])
+
+  @property
+  def id(self) -> int:
+    return int(self["id"])
+
+  @property
+  def last_message_id(self) -> Optional[int]:
+    if self.get("last_message_id") is None: return None
+    return int(self["last_message_id"])
+
+  @property
+  def last_pin_timestamp(self) -> Optional[datetime]:
+    if self.get("last_pin_timestamp") is None: return None
+    return datetime.fromisoformat(self["last_pin_timestamp"])
+
+  @property
+  def name(self) -> str:
+    return self["name"]
+
+  @property
+  def nsfw(self) -> bool:
+    return self.get("nsfw", False)
+
+  @property
+  def overwrites(self) -> List[PermissionOverwrites]:
+    # implement: PermissionOverwrites
+    raise NotImplementedError
+
+  @property
+  def parent_id(self) -> Optional[int]:
+    if self.get("parent_id") is None: return None
+    return int(self["parent_id"])
+
+  @property
+  def permissions(self) -> Optional[str]:
+    return self.get("permissions")
+
+  @property
+  def position(self) -> int:
+    return self["position"]
+
+  @property
+  def slowmode(self) -> Optional[int]:
+    return self.get("rate_limit_per_user")
+
+  @property
+  def rtc_region(self) -> Optional[VoiceRegion]:
+    # implement: VoiceRegionObject
+    raise NotImplementedError
+
+  @property
+  def topic(self) -> Optional[str]:
+    return self.get("topic")
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType.voice
+
+  @property
+  def user_limit(self) -> int:
+    return self.get("user_limit", 0)
+
+  @property
+  def video_quality_mode(self) -> str:
+    return VideoQualityMode(self["video_quality_mode"]).name
+
 
   async def edit(
     self,

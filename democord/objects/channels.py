@@ -6,7 +6,8 @@ from ..channels import (
                        MediaChannel,
                        StageChannel,
                        TextChannel,
-                       Thread
+                       Thread,
+                       VoiceChannel
                        )
 from ..types    import (
                        ISO8601Timestamp,
@@ -164,3 +165,25 @@ class ThreadObject(BaseObject, Thread):
   thread_metadata       : Optional[ThreadMetadataObject]
   total_message_sent    : int
   type                  : Literal[10, 11, 12]
+
+
+class VoiceChannelObject(BaseObject, VoiceChannel):
+  from .overwrite import OverwriteObject
+
+  bitrate               : int
+  guild_id              : Snowflake
+  id                    : Snowflake
+  last_message_id       : Optional[Snowflake]
+  last_pin_timestamp    : Optional[ISO8601Timestamp]
+  name                  : str
+  nsfw                  : bool                       = False
+  parent_id             : Optional[Snowflake]
+  permission_overwrites : List[OverwriteObject]      = []
+  permissions           : Optional[str]
+  position              : int
+  rate_limit_per_user   : Optional[int]
+  rtc_region            : Optional[str]
+  topic                 : Optional[str]
+  type                  : int                        = 2
+  user_limit            : int
+  video_quality_mode    : int
