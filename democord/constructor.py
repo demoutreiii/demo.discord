@@ -136,21 +136,8 @@ class Constructor:
 
   @staticmethod
   def guild(data : Dict[str, Any]) -> Guild:
-    guild : Guild = Guild()
-    for attribute in data:
-      match attribute:
-        case "icon" | "splash" | "discovery_splash":
-          if data[attribute]:                 guild.__dict__[attribute] : Asset     = Constructor.guild_asset(attribute, data)
-        case "id":                            guild.__dict__[attribute] : int       = int(data[attribute])
-        case "owner_id":                      guild.__dict__["owner"]   : User      = User.from_id(ws, data["owner_id"])
-        case "default_message_notifications": guild.__dict__[attribute] : str       = DefaultMessageNotification(data[attribute]).name
-        case "explicit_content_filter":       guild.__dict__[attribute] : str       = ExplicitContentFilter(data[attribute]).name
-        case "mfa_level":                     guild.__dict__[attribute] : str       = MFALevel(data[attribute]).name
-        case "system_channel_flags":          guild.__dict__[attribute] : List[str] = CallableSystemChannelFlags(name for name, flag in SystemChannelFlags._member_map_.items() if (data[attribute] & flag.value) == flag.value)
-        case "premium_tier":                  guild.__dict__[attribute] : str       = PremiumTier(data[attribute]).name
-        case "nsfw_level":                    guild.__dict__[attribute] : str       = NSFWLevel(data[attribute]).name
-        case "verification_level":            guild.__dict__[attribute] : str       = VerificationLevel(data[attribute]).name
-        case _:                               guild.__dict__[attribute] : Any       = data[attribute]
+    from .objects import GuildObject
+    guild : Guild = GuildObject(data)
     guild.channels : CallableGuildChannels = CallableGuildChannels()
     return guild
 

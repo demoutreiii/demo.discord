@@ -22,3 +22,4 @@ from .embed       import (
                          EmbedVideoObject
                          )
 from .emoji       import EmojiObject
+from .guild       import GuildObject

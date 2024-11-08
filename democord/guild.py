@@ -228,10 +228,181 @@ class Guild:
 
     return self.name
 
+  @property
+  def afk_channel_id(self) -> Optional[int]:
+    if self["afk_channel_id"] is None: return None
+    return int(self["afk_channel_id"])
+
+  @property
+  def afk_timeout(self) -> int:
+    return self["afk_timeout"]
+
+  @property
+  def application_id(self) -> Optional[int]:
+    if self["application_id"] is None: return None
+    return int(self["application_id"])
+
+  @property
+  def approximate_member_count(self) -> int:
+    return self["approximate_member_count"]
+
+  @property
+  def approximate_presence_count(self) -> int:
+    return self["approximate_presence_count"]
+
+  @property
+  def banner(self) -> Optional[Asset]:
+    # implement: Asset[GuildBanner]
+    raise NotImplementedError
+
+  @property
+  def default_message_notifications(self) -> str:
+    return DefaultMessageNotification(self["default_message_notifications"]).name
+
+  @property
+  def description(self) -> Optional[str]:
+    return self["description"]
+
+  @property
+  def discovery_splash(self) -> Optional[Asset]:
+    # implement: Asset[GuildDiscoverySplash]
+    raise NotImplementedError
+
+  @property
+  def emojis(self) -> List[Emoji]:
+    # implement: Emoji
+    raise NotImplementedError
+
+  @property
+  def explicit_content_filter(self) -> str:
+    return ExplicitContentFilter(self["explicit_content_filter"]).name
+
+  @property
+  def features(self) -> List[str]:
+    return self["features"]
+
+  @property
+  def icon(self) -> Optional[Asset]:
+    # implement: Asset[GuildIcon]
+    raise NotImplementedError
+
+  @property
+  def id(self) -> int:
+    return int(self["id"])
+
+  @property
+  def is_owner(self) -> bool:
+    return self["owner"]
+
+  @property
+  def max_members(self) -> int:
+    return self["max_members"]
+
+  @property
+  def max_presences(self) -> Optional[int]:
+    return self["max_presences"]
+
+  @property
+  def max_stage_users(self) -> int:
+    return self["max_stage_video_channel_users"]
+
+  @property
+  def max_video_users(self) -> int:
+    return self["max_video_channel_users"]
 
   @property
   def me(self) -> Optional[Member]:
-    return self.members(id = self.ws.app.info.id)
+    # retrieve MemberObject from cache
+    raise NotImplementedError
+
+  @property
+  def mfa_level(self) -> str:
+    return MFALevel(self["mfa_level"]).name
+
+  @property
+  def name(self) -> str:
+    return self["name"]
+
+  @property
+  def nsfw_level(self) -> str:
+    return NSFWLevel(self["nsfw_level"]).name
+
+  @property
+  def owner(self) -> User:
+    # implement: UserObject
+    # retrieve from cache
+    raise NotImplementedError
+
+  @property
+  def permissions(self) -> Permissions:
+    # implement: Permissions
+    raise NotImplementedError
+
+  @property
+  def preferred_locale(self) -> str:
+    return self["preferred_locale"]
+
+  @property
+  def premium_progress_bar_enabled(self) -> bool:
+    return self["premium_progress_bar_enabled"]
+
+  @property
+  def premium_subscription_count(self) -> int:
+    return self["premium_subscription_count"]
+
+  @property
+  def premium_tier(self) -> int:
+    return self["premium_tier"]
+
+  @property
+  def public_updates_channel_id(self) -> Optional[int]:
+    if self["public_updates_channel_id"] is None: return None
+    return int(self["public_updates_channel_id"])
+
+  @property
+  def splash(self) -> Optional[Asset]:
+    # implement: Asset[GuildSplash]
+    raise NotImplementedError
+
+  @property
+  def stickers(self) -> List[Sticker]:
+    # implement: StickerObject
+    raise NotImplementedError
+
+  @property
+  def system_channel_flags(self) -> List[str]:
+    return [
+      flag.name
+      for flag in SystemChannelFlags
+      if (self["system_channel_flags"] & flag.value) == flag.value
+    ]
+
+  @property
+  def system_channel_id(self) -> Optional[int]:
+    if self["system_channel_id"] is None: return None
+    return int(self["system_channel_id"])
+
+  @property
+  def vanity_url_code(self) -> Optional[str]:
+    return self["vanity_url_code"]
+
+  @property
+  def verification_level(self) -> str:
+    return VerificationLevel(self["verification_level"]).name
+
+  @property
+  def welcome_screen(self) -> WelcomeScreen:
+    # implement: WelcomeScreen
+    raise NotImplementedError
+
+  @property
+  def widget_channel_id(self) -> Optional[int]:
+    if self["widget_channel_id"] is None: return None
+    return int(self["widget_channel_id"])
+
+  @property
+  def widget_enabled(self) -> bool:
+    return self["widget_enabled"]
 
 
   async def add_member(
