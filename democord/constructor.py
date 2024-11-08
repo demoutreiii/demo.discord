@@ -115,7 +115,8 @@ class Constructor:
 
   @staticmethod
   def emoji(data : Dict[str, Any]) -> Emoji:
-    emoji : Emoji = Emoji()
+    from .objects import EmojiObject
+    emoji : Emoji = EmojiObject()
     return emoji
 
 
