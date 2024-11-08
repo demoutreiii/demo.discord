@@ -59,6 +59,7 @@ from .metaclasses import (
                          )
 from .permissions import PermissionOverwrites
 from .sticker     import Sticker
+from .types       import ObjectPayload
 from .user        import User
 from datetime     import datetime
 from typing       import *
@@ -99,11 +100,17 @@ class Constructor:
         ChannelType.text                : TextChannelObject,
         ChannelType.voice               : VoiceChannelObject
       }
-      channel : Union[DMChannel, GuildChannel] = channel_objects[ChannelType(data["type"])]()
+      channel : Union[DMChannel, GuildChannel] = channel_objects[ChannelType(data["type"])](data)
       channel.__dict__["ws"] : DiscordWebSocket = Constructor.ws
       return channel
     except Exception as error:
       if ws.app.logger: ws.app.logger.error(error)
+
+
+  @staticmethod
+  def embed(data : ObjectPayload) -> Embed:
+    from .objects import EmbedObject
+    return EmbedObject(data)
 
 
   @staticmethod
