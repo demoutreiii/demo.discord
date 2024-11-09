@@ -1,42 +1,82 @@
-from .channels import VoiceChannel
-from .reqs     import PATCH
-from .role     import Role
-from .user     import User
-from datetime  import (
-                      datetime,
-                      timedelta
-                      )
-from typing    import *
+from .asset       import Asset
+from .channels    import VoiceChannel
+from .decoration  import AvatarDecoration
+from .permissions import Permissions
+from .reqs        import PATCH
+from .role        import Role
+from .user        import User
+from datetime     import (
+                         datetime,
+                         timedelta
+                         )
+from typing       import *
 
 
 class Member:
-  """
-  Represents a Discord guild member
-
-
-  Attributes
-  ----------
-  nick : Optional[str]
-    The set nickname of the member. If none, defaults to the member's username instead
-
-  user : Optional[user]
-    Corresponding User object of the member
-  """
+  @property
+  def avatar(self) -> Optional[Asset]:
+    # implement: Asset[UserAvatar]
+    raise NotImplementedError
 
   @property
-  def id(
-    self
-  ) -> int:
-    """
-    Returns the ID of the member
+  def avatar_decoration(self) -> Optional[AvatarDecoration]:
+    # implement: AvatarDecoration
+    raise NotImplementedError
 
+  @property
+  def banner(self) -> Optional[Asset]:
+    # implement: Asset[UserBanner]
+    raise NotImplementedError
 
-    Returns
-    -------
-    int
-    """
+  @property
+  def deaf(self) -> bool:
+    return self["deaf"]
 
-    return self.user.id
+  @property
+  def flags(self) -> List[str]:
+    # implement: MemberFlags
+    raise NotImplementedError
+
+  @property
+  def joined_at(self) -> datetime:
+    return datetime.fromisoformat(self["joined_at"])
+
+  @property
+  def mute(self) -> bool:
+    return self["mute"]
+
+  @property
+  def nick(self) -> Optional[str]:
+    return self["nick"]
+
+  @property
+  def pending(self) -> bool:
+    return self["pending"]
+
+  @property
+  def permissions(self) -> Permissions:
+    # implement: Permissions
+    raise NotImplementedError
+
+  @property
+  def premium_since(self) -> Optional[datetime]:
+    if self["premium_since"] is None: return None
+    return datetime.fromisoformat(self["premium_since"])
+
+  @property
+  def roles(self) -> List[Role]:
+    # implement: Role
+    raise NotImplementedError
+
+  @property
+  def timed_out_until(self) -> Optional[datetime]:
+    if self["communication_disabled_until"] is None: return None
+    return datetime.fromisoformat(self["communication_disabled_until"])
+
+  @property
+  def user(self) -> User:
+    # retrieve UserObject from cache by ID
+    raise NotImplementedError
 
   async def add_roles(
     self,

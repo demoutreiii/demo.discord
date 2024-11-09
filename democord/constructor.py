@@ -187,11 +187,8 @@ class Constructor:
 
   @staticmethod
   def member(data : Dict[str, Any]) -> Member:
-    member : Member = Member()
-    for attribute in data:
-      match attribute:
-        case "user": member.__dict__[attribute] : User = User.from_data(data[attribute])
-        case "nick": member.__dict__[attribute] : str  = data[attribute]
+    from .objects import MemberObject
+    member : Member = MemberObject(data)
     return member
 
 
