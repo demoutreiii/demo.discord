@@ -72,6 +72,3 @@ class Invite:
   @property
   def type(self) -> InviteType:
     return InviteType(self["type"])
-
-
-class InviteTarget: ...
