@@ -23,3 +23,4 @@ from .embed       import (
                          )
 from .emoji       import EmojiObject
 from .guild       import GuildObject
+from .invite      import InviteObject

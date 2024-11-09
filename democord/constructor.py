@@ -116,7 +116,7 @@ class Constructor:
   @staticmethod
   def emoji(data : Dict[str, Any]) -> Emoji:
     from .objects import EmojiObject
-    emoji : Emoji = EmojiObject()
+    emoji : Emoji = EmojiObject(data)
     return emoji
 
 
@@ -180,45 +180,8 @@ class Constructor:
 
   @staticmethod
   def invite(data : Dict[str, Any]) -> Invite:
-    invite : Invite = Invite()
-    invite.__dict__["target"] : InviteTarget = InviteTarget()
-    for attribute in data:
-      match attribute:
-        case "approximate_member_count":
-          invite.__dict__[attribute] : int = data[attribute]
-        case "approximate_presence_count":
-          invite.__dict__[attribute] : int = data[attribute]
-        case "channel":
-          invite.__dict__[attribute] : Optional[Union[DMChannel, GuildChannel]] = Constructor.channel(data[attribute]) if data[attribute] else None
-        case "code":
-          invite.__dict__[attribute] : str = data[attribute]
-        case "created_at":
-          invite.__dict__[attribute] : datetime = datetime.fromisoformat(data[attribute])
-        case "expires_at":
-          invite.__dict__[attribute] : Optional[datetime] = datetime.fromisoformat(data[attribute]) if data[attribute] else None
-        case "guild":
-          invite.__dict__[attribute] : Guild = Constructor.guild(data[attribute])
-        case "guild_scheduled_event":
-          # implement: ScheduledEvent
-          ...
-        case "inviter":
-          invite.__dict__[attribute] : User = Constructor.user(data[attribute])
-        case "max_age":
-          invite.__dict__[attribute] : int = data[attribute]
-        case "max_uses":
-          invite.__dict__[attribute] : int = data[attribute]
-        case "target_application":
-          invite.target.__dict__["application"] : AppInfo = Constructor.info(data[attribute])
-        case "target_type":
-          invite.target.__dict__["type"] : InviteTargetType = InviteTargetType(data[attribute])
-        case "target_user":
-          invite.target.__dict__["user"] : User = Constructor.user(data[attribute])
-        case "temporary":
-          invite.__dict__[attribute] : bool = data[attribute]
-        case "type":
-          invite.__dict__[attribute] : InviteType = InviteType(data[attribute])
-        case "uses":
-          invite.__dict__[attribute] : int = data[attribute]
+    from .objects import InviteObject
+    invite : Invite = InviteObject(data)
     return invite
 
 
