@@ -194,8 +194,8 @@ class Constructor:
 
   @staticmethod
   def message(data : Dict[str, Any]) -> Message:
-    # implement: Message
-    ...
+    from .objects import MessageObject
+    return MessageObject(data)
 
 
   @staticmethod
