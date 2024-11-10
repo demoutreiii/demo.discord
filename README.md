@@ -4,9 +4,9 @@
 
 ![Static Badge](https://img.shields.io/badge/demo.py-4584b6)
 ![Static Badge](https://img.shields.io/badge/version-0.11.29-green)
-![GitHub Created At](https://img.shields.io/github/created-at/almostDemoPy/democord?style=flat)
+![GitHub Created At](https://img.shields.io/github/created-at/demoutreiii/demo.discord?style=flat)
 ![Discord](https://img.shields.io/discord/1267703591863586858?style=flat)
-![GitHub License](https://img.shields.io/github/license/almostDemoPy/democord)
+![GitHub License](https://img.shields.io/github/license/demoutreiii/demo.discord)
 
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Z8Z413A7I5)
@@ -38,13 +38,13 @@ app.run()
 ## Manuals
 Welcome to the Wiki of the democord Discord API library. The wiki showcases classes and functions that are available to you.
 
-\- [democord Core API Reference](https://github.com/almostDemoPy/democord/wiki/Core-API-Reference#table-of-contents)
+\- [democord Core API Reference](https://github.com/demoutreiii/demo.discord/wiki/Core-API-Reference#table-of-contents)
 
 ---
 
 ## Frequently Asked Questions
-The [FAQ](https://github.com/almostDemoPy/democord/wiki/FAQ#faq---frequently-asked-questions) enlists the usually asked questions and queries of the community, namely:
-- [Where do I pass my bot's token and how ?](https://github.com/almostDemoPy/democord/wiki/FAQ#where-do-i-pass-my-bots-token-and-how-)
+The [FAQ](https://github.com/demoutreiii/demo.discord/wiki/FAQ#faq---frequently-asked-questions) enlists the usually asked questions and queries of the community, namely:
+- [Where do I pass my bot's token and how ?](https://github.com/demoutreiii/demo.discord/wiki/FAQ#where-do-i-pass-my-bots-token-and-how-)
 
 ---
 
