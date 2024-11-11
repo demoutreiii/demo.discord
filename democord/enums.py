@@ -1,5 +1,14 @@
-from enum   import Enum
+from enum   import (
+                   auto,
+                   Enum,
+                   StrEnum
+                   )
 from typing import *
+
+
+class ActivityLocationKind(StrEnum):
+  gc = auto()
+  pc = auto()
 
 
 class ApplicationEventWebhookStatus(Enum):
