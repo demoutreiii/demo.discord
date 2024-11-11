@@ -91,6 +91,11 @@ class AuditLogEvent(Enum):
   home_settings_update                        = 191
 
 
+class AutomodRuleEventType(Enum):
+  message_send  = 1
+  member_update = 2
+
+
 class AutomodRuleTriggerType(Enum):
   keyword        = 1
   spam           = 3

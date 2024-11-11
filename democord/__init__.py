@@ -3,6 +3,7 @@ from .enums import (
                    ApplicationIntegrationType,
                    ApplicationEventWebhookStatus,
                    AuditLogEvent,
+                   AutomodRuleEventType,
                    AutomodRuleTriggerType,
                    KeywordPresetType
                    )
