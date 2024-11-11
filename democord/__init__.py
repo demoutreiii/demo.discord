@@ -3,7 +3,8 @@ from .enums import (
                    ApplicationIntegrationType,
                    ApplicationEventWebhookStatus,
                    AuditLogEvent,
-                   AutomodRuleTriggerType
+                   AutomodRuleTriggerType,
+                   KeywordPresetType
                    )
 from .flags import (
                    ApplicationFlag

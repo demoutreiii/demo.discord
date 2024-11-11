@@ -97,3 +97,9 @@ class AutomodRuleTriggerType(Enum):
   keyword_preset = 4
   mention_spam   = 5
   member_profile = 6
+
+
+class KeywordPresetType(Enum):
+  profanity      = 1
+  sexual_content = 2
+  slurs          = 3
