@@ -5,5 +5,6 @@ from .audit_entry_info        import OptionalAuditEntryInfoObject
 from .audit_log               import AuditLogObject
 from .audit_log_change        import AuditLogChangeObject
 from .audit_log_entry         import AuditLogEntryObject
+from .auto_moderation_rule    import AutoModerationRuleObject
 from .install_params          import InstallParamsObject
 from .integration_type_config import ApplicationIntegrationTypeConfigObject
