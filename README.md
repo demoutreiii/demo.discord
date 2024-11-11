@@ -3,8 +3,13 @@
 
 
 ![Static Badge](https://img.shields.io/badge/demo.py-4584b6)
+<<<<<<< HEAD
 ![Static Badge](https://img.shields.io/badge/version-0.11.29-green)
 ![GitHub Created At](https://img.shields.io/github/created-at/demoutreiii/demo.discord?style=flat)
+=======
+![Static Badge](https://img.shields.io/badge/version-0.12a-yellow)
+![GitHub Created At](https://img.shields.io/github/created-at/almostDemoPy/democord?style=flat)
+>>>>>>> StructuralUpdate
 ![Discord](https://img.shields.io/discord/1267703591863586858?style=flat)
 ![GitHub License](https://img.shields.io/github/license/demoutreiii/demo.discord)
 

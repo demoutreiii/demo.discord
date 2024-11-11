@@ -32,7 +32,9 @@ from .reqs        import (
                          )
 from .role        import Role
 from .sticker     import Sticker
+from .tag         import Tag
 from .user        import User
+from datetime     import datetime
 from pathlib      import Path
 from re           import findall
 from typing       import *
@@ -42,6 +44,42 @@ if TYPE_CHECKING:
 
 
 class DMChannel:
+  @property
+  def application_id(self) -> Optional[int]:
+    if self.get("application_id") is None: return None
+    return int(self["application_id"])
+
+  @property
+  def icon(self) -> Optional[Asset]:
+    # implement: Asset[GroupDM]
+    raise NotImplementedError
+
+  @property
+  def id(self) -> int:
+    return int(self["id"])
+
+  @property
+  def last_message_id(self) -> Optional[int]:
+    if self.get("last_message_id") is None: return None
+    return int(self["last_message_id"])
+
+  @property
+  def managed(self) -> bool:
+    return self.get("managed", False)
+
+  @property
+  def name(self) -> Optional[str]:
+    return self.get("name")
+
+  @property
+  def recipients(self) -> List[User]:
+    # implement: UserObject
+    raise NotImplementedError
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType(self["type"])
+
   async def close(self, reason : Optional[str] = None) -> Self:
     try:
       response : Dict[str, Any] = self.ws.delete(
@@ -100,23 +138,34 @@ class DMChannel:
 
 
 class GuildChannel:
-  """
-  Represents a guild channel. This can be further classified as TextChannel, VoiceChannel, ForumChannel, StageChannel, and Thread, when subclassed.
-  """
+  @property
+  def guild_id(self) -> int:
+    return int(self["id"])
 
+  @property
+  def id(sself) -> int:
+    return int(self["id"])
 
-  def __getattribute__(
-    self,
-    attribute : str
-  ) -> Optional[Any]:
-    try:
-      nullables : Dict[ChannelType, List[str]] = {
-        ChannelType.text : []
-      }
-      if attribute in nullables[ChannelType[self.type]]: return self.__dict__.get(attribute)
-      else: return super().__getattribute__(attribute)
-    except Exception as error:
-      if self.ws.app.logger: self.ws.app.logger.error(error)
+  @property
+  def name(self) -> str:
+    return self["name"]
+
+  @property
+  def overwrites(self) -> List[PermissionOverwrites]:
+    # implement: PermissionOverwrites
+    raise NotImplementedError
+
+  @property
+  def permissions(self) -> Optional[str]:
+    return self.get("permissions")
+
+  @property
+  def position(self) -> int:
+    return self["position"]
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType(self["type"])
 
 
   async def create_invite(self, **attributes) -> Invite:
@@ -372,6 +421,61 @@ class GuildChannel:
 
 
 class AnnouncementChannel(GuildChannel):
+  @property
+  def auto_archive_duration(self) -> int:
+    return self.get("default_auto_archive_duration", 60)
+
+  @property
+  def guild_id(self) -> int:
+    # retrieve Guild object from cache
+    return int(self["guild_id"])
+
+  @property
+  def id(self) -> int:
+    return int(self["id"])
+
+  @property
+  def last_message_id(self) -> Optional[int]:
+    return int(self["last_message_id"]) if self.get("last_message_id") is not None else None
+
+  @property
+  def last_pin_timestamp(self) -> Optional[datetime]:
+    return datetime.fromisoformat(self["last_pin_timestamp"]) if self.get("last_pin_timestamp") is not None else None
+
+  @property
+  def name(self) -> str:
+    return self["name"]
+
+  @property
+  def nsfw(self) -> bool:
+    return self.get("nsfw", False)
+
+  @property
+  def parent_id(self) -> int:
+    # retreive CategoryChannel from cache
+    return int(self["parent_id"]) if self.get("parent_id") is not None else None
+
+  @property
+  def overwrites(self) -> List[PermissionOverwrites]:
+    # implement: PermissionOverwrites
+    raise NotImplementedError
+
+  @property
+  def permissions(self) -> Optional[str]:
+    return self.get("permissions")
+
+  @property
+  def position(self) -> int:
+    return int(self["position"])
+
+  @property
+  def topic(self) -> Optional[str]:
+    return self.get("topic")
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType.announcement
+  
 
   async def edit(
     self,
@@ -449,6 +553,37 @@ class AnnouncementChannel(GuildChannel):
 
 
 class CategoryChannel(GuildChannel):
+  @property
+  def guild_id(self) -> int:
+    # retrieve Guild object from cache
+    return int(self["guild_id"])
+
+  @property
+  def id(self) -> int:
+    return int(self["id"])
+
+  @property
+  def name(self) -> str:
+    return self["name"]
+
+  @property
+  def overwrites(self) -> List[PermissionOverwrites]:
+    # implement: PermissionOverwrites
+    raise NotImplementedError
+
+  @property
+  def permissions(self) -> Optional[str]:
+    return self.get("permissions")
+
+  @property
+  def position(self) -> int:
+    return int(self["position"])
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType.category
+
+
   async def create_thread(self) -> None:
     try:
       raise NotImplemented("cannot create thread in a CategoryChannel")
@@ -508,6 +643,86 @@ class CategoryChannel(GuildChannel):
 
 
 class Forum(GuildChannel):
+  @property
+  def available_tags(self) -> List[Tag]:
+    # implement: Tag
+    raise NotImplementedError
+
+  @property
+  def auto_archive_duration(self) -> int:
+    return self.get("default_auto_archive_duration", 60)
+  
+  @property
+  def flags(self) -> Optional[ChannelFlags]:
+    if self.get("flags") is None: return None
+    return ChannelFlags.require_tag
+
+  @property
+  def forum_layout(self) -> Optional[ForumLayout]:
+    if self.get("default_forum_layout") is None: return None
+    return ForumLayout(self["default_forum_layout"])
+
+  @property
+  def guild_id(self) -> int:
+    # retrieve Guild object from cache
+    return int(self["guild_id"])
+
+  @property
+  def id(self) -> int:
+    return int(self["id"])
+
+  @property
+  def last_message_id(self) -> Optional[int]:
+    return int(self["last_message_id"]) if self.get("last_message_id") is not None else None
+
+  @property
+  def name(self) -> str:
+    return self["name"]
+
+  @property
+  def nsfw(self) -> bool:
+    return self.get("nsfw", False)
+
+  @property
+  def overwrites(self) -> List[PermissionOverwrites]:
+    # implement: PermissionOverwrites
+    raise NotImplementedError
+
+  @property
+  def parent_id(self) -> Optional[int]:
+    # retrieve CategoryChannel from cache
+    return int(self["parent_id"]) if self.get("parent_id") is not None else None
+
+  @property
+  def permissions(self) -> Optional[str]:
+    return self.get("permissions")
+
+  @property
+  def position(self) -> int:
+    return self["position"]
+
+  @property
+  def reaction_emoji(self) -> Optional[Emoji]:
+    # implement: Emoji
+    return Constructor.emoji(self["default_reaction_emoji"]) if self.get("default_reaction_emoji") is not None else None
+
+  @property
+  def sort_order(self) -> Optional[ForumSortOrder]:
+    if self.get("default_sort_order") is None: return None
+    return ForumSortOrder(self["default_sort_order"])
+
+  @property
+  def thread_slowmode(self) -> Optional[int]:
+    return self.get("default_thread_rate_limit_per_user")
+
+  @property
+  def topic(self) -> Optional[str]:
+    return self.get("topic")
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType.forum
+
 
   async def create_thread(self, **attributes) -> Thread:
     try:
@@ -715,6 +930,80 @@ class Forum(GuildChannel):
 
 
 class MediaChannel(GuildChannel):
+  @property
+  def auto_archive_duration(self) -> int:
+    return self.get("default_auto_archive_duration", 60)
+
+  @property
+  def available_tags(self) -> List[Tag]:
+    # implement: Tag
+    raise NotImplementedError
+
+  @property
+  def flags(self) -> List[ChannelFlags]:
+    return [flag for flag in ChannelFlags if (self.get("flags", 0) & flag.value) == flag.value]
+
+  @property
+  def guild_id(self) -> int:
+    # retrieve Guild object from cache
+    return self["guild_id"]
+
+  @property
+  def id(self) -> int:
+    return self["id"]
+
+  @property
+  def last_message_id(self) -> Optional[int]:
+    return self.get("last_message_id")
+
+  @property
+  def name(self) -> str:
+    return self["name"]
+
+  @property
+  def nsfw(self) -> bool:
+    return self.get("nsfw", False)
+
+  @property
+  def overwrites(self) -> List[PermissionOverwrites]:
+    # implement: PermissionOverwrites
+    raise NotImplementedError
+
+  @property
+  def parent_id(self) -> Optional[int]:
+    # retrieve CategoryChannel from cache
+    return int(self["parent_id"]) if self.get("parent_id") is not None else None
+
+  @property
+  def permissions(self) -> Optional[str]:
+    return self.get("permissions")
+
+  @property
+  def position(self) -> int:
+    return self["position"]
+
+  @property
+  def reaction_emoji(self) -> Optional[Emoji]:
+    # implement: Emoji
+    raise NotImplementedError
+
+  @property
+  def sort_order(self) -> ForumSortOrder:
+    if self.get("default_sort_order") is None: return None
+    return ForumSortOrder(self["default_forum_sort_order"])
+
+  @property
+  def thread_slowmode(self) -> Optional[int]:
+    return self.get("default_thread_rate_limit_per_user")
+
+  @property
+  def topic(self) -> Optional[str]:
+    return self.get("topic")
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType.media
+
 
   async def create_thread(self, **attributes) -> Thread:
     try:
@@ -919,6 +1208,59 @@ class MediaChannel(GuildChannel):
 
 class StageChannel(GuildChannel):
 
+  @property
+  def guild_id(self) -> int:
+    return int(self["guild_id"])
+
+  @property
+  def id(self) -> int:
+    return int(self["id"])
+
+  @property
+  def last_message_id(self) -> Optional[int]:
+    if self.get("last_message_id") is None: return None
+    return int(self["last_message_id"])
+
+  @property
+  def name(self) -> str:
+    return self["name"]
+
+  @property
+  def nsfw(self) -> bool:
+    return self.get("nsfw", False)
+
+  @property
+  def overwrites(self) -> List[PermissionOverwrites]:
+    # implement: PermissionOverwrites
+    raise NotImplementedError
+
+  @property
+  def parent_id(self) -> Optional[int]:
+    # retrieve CategoryChannel from cache
+    return self.get("parent_id")
+
+  @property
+  def permissions(self) -> Optional[str]:
+    return self.get("permissions")
+
+  @property
+  def position(self) -> int:
+    return int(self["position"])
+
+  @property
+  def slowmode(self) -> Optional[int]:
+    if self.get("rate_limit_per_user") is None: return None
+    return int(self["rate_limit_per_user"])
+
+  @property
+  def topic(self) -> Optional[str]:
+    return self.get("topic")
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType.stage
+
+
   async def edit(
     self,
     **attributes
@@ -971,6 +1313,70 @@ class StageChannel(GuildChannel):
 
 
 class TextChannel(GuildChannel):
+  @property
+  def auto_archive_duration(self) -> int:
+    return self.get("default_auto_archive_duration", 60)
+
+  @property
+  def guild_id(self) -> int:
+    # retrieve Guild object from cache
+    return int(self["guild_id"])
+
+  @property
+  def id(self) -> int:
+    return int(self["id"])
+
+  @property
+  def last_message_id(self) -> Optional[int]:
+    return int(self["last_message_id"]) if self.get("last_message_id") is not None else None
+
+  @property
+  def last_pin_timestamp(self) -> Optional[datetime]:
+    if self.get("last_pin_timestamp") is None: return None
+    return datetime.fromisoformat(self["last_pin_timestamp"])
+
+  @property
+  def name(self) -> str:
+    return self["name"]
+
+  @property
+  def nsfw(self) -> bool:
+    return self.get("nsfw", False)
+
+  @property
+  def overwrites(self) -> List[PermissionOverwrites]:
+    # implement: PermissionOverwrites
+    raise NotImplementedError
+
+  @property
+  def parent_id(self) -> Optional[int]:
+    # retrieve CategoryChannel from cache
+    return self.get("parent_id")
+
+  @property
+  def permissions(self) -> Optional[str]:
+    return self.get("permissions")
+
+  @property
+  def position(self) -> int:
+    return self["position"]
+
+  @property
+  def slowmode(self) -> Optional[int]:
+    return self.get("rate_limit_per_user")
+
+  @property
+  def thread_slowmode(self) -> Optional[int]:
+    return self.get("default_thread_rate_limit_per_user")
+
+  @property
+  def topic(self) -> Optional[str]:
+    return self.get("topic")
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType.text
+
 
   async def edit(
     self,
@@ -1039,6 +1445,78 @@ class TextChannel(GuildChannel):
 
 
 class Thread(GuildChannel):
+  @property
+  def applied_tags(self) -> List[Tag]:
+    # implement: Tag
+    raise NotImplementedError
+
+  @property
+  def flags(self) -> List[ChannelFlags]:
+    return [flag for flag in ChannelFlags if (self.get("flags", 0) & flag.value) == flag.value]
+
+  @property
+  def guild_id(self) -> int:
+    # retrieve Guild object from cache
+    return int(self["guild_id"])
+
+  @property
+  def id(self) -> int:
+    return int(self["id"])
+
+  @property
+  def me(self) -> ThreadMember:
+    # implement: ThreadMember
+    raise NotImplementedError
+
+  @property
+  def member_count(self) -> int:
+    return self.get("member_count", 0)
+
+  @property
+  def message_count(self) -> int:
+    return self.get("message_count", 0)
+
+  @property
+  def metadata(self) -> Optional[ThreadMetadata]:
+    # implement: ThreadMetadata
+    raise NotImplementedError
+
+  @property
+  def name(self) -> str:
+    return self["name"]
+
+  @property
+  def overwrites(self) -> List[PermissionOverwrites]:
+    # implement: PermissionOverwrites
+    raise NotImplementedError
+
+  @property
+  def owner_id(self) -> int:
+    # retrieve UserObject from cache
+    return int(self["owner_id"])
+
+  @property
+  def parent_id(self) -> Optional[int]:
+    # retrieve CategoryChannel object from cache
+    return int(self["parent_id"]) if self.get("parent_id") is not None else None
+
+  @property
+  def position(self) -> int:
+    return self["position"]
+
+  @property
+  def slowmode(self) -> Optional[int]:
+    return self.get("rate_limit_per_user")
+
+  @property
+  def total_message_sent(self) -> int:
+    return self["total_message_sent"]
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType(self["type"])
+
+
   async def add_member(self, member : Member) -> None:
     try:
       if not isinstance(member, Member):
@@ -1184,6 +1662,80 @@ class Thread(GuildChannel):
 
 
 class VoiceChannel(GuildChannel):
+  @property
+  def bitrate(self) -> int:
+    return self["bitrate"]
+
+  @property
+  def guild_id(self) -> int:
+    # retrieve GuildObject from cache
+    return int(self["guild_id"])
+
+  @property
+  def id(self) -> int:
+    return int(self["id"])
+
+  @property
+  def last_message_id(self) -> Optional[int]:
+    if self.get("last_message_id") is None: return None
+    return int(self["last_message_id"])
+
+  @property
+  def last_pin_timestamp(self) -> Optional[datetime]:
+    if self.get("last_pin_timestamp") is None: return None
+    return datetime.fromisoformat(self["last_pin_timestamp"])
+
+  @property
+  def name(self) -> str:
+    return self["name"]
+
+  @property
+  def nsfw(self) -> bool:
+    return self.get("nsfw", False)
+
+  @property
+  def overwrites(self) -> List[PermissionOverwrites]:
+    # implement: PermissionOverwrites
+    raise NotImplementedError
+
+  @property
+  def parent_id(self) -> Optional[int]:
+    if self.get("parent_id") is None: return None
+    return int(self["parent_id"])
+
+  @property
+  def permissions(self) -> Optional[str]:
+    return self.get("permissions")
+
+  @property
+  def position(self) -> int:
+    return self["position"]
+
+  @property
+  def slowmode(self) -> Optional[int]:
+    return self.get("rate_limit_per_user")
+
+  @property
+  def rtc_region(self) -> Optional[VoiceRegion]:
+    # implement: VoiceRegionObject
+    raise NotImplementedError
+
+  @property
+  def topic(self) -> Optional[str]:
+    return self.get("topic")
+
+  @property
+  def type(self) -> ChannelType:
+    return ChannelType.voice
+
+  @property
+  def user_limit(self) -> int:
+    return self.get("user_limit", 0)
+
+  @property
+  def video_quality_mode(self) -> str:
+    return VideoQualityMode(self["video_quality_mode"]).name
+
 
   async def edit(
     self,

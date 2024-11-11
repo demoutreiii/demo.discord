@@ -1,4 +1,4 @@
-from enum   import Enum
+from enum   import Enum, StrEnum, auto
 from typing import *
 
 
@@ -24,6 +24,16 @@ class DefaultMessageNotification(Enum):
   """
   all_messages  = 0
   only_mentions = 1
+
+
+class EmbedType(StrEnum):
+  article     = auto()
+  gifv        = auto()
+  image       = auto()
+  link        = auto()
+  poll_result = auto()
+  rich        = auto()
+  video       = auto()
 
 
 class ErrorCodes(Enum):
