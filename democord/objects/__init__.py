@@ -8,3 +8,4 @@ from .audit_log_entry         import AuditLogEntryObject
 from .auto_moderation_rule    import AutoModerationRuleObject
 from .install_params          import InstallParamsObject
 from .integration_type_config import ApplicationIntegrationTypeConfigObject
+from .trigger_metadata        import TriggerMetadataObject

@@ -2,7 +2,8 @@ from .enums import (
                    ActivityLocationKind,
                    ApplicationIntegrationType,
                    ApplicationEventWebhookStatus,
-                   AuditLogEvent
+                   AuditLogEvent,
+                   AutomodRuleTriggerType
                    )
 from .flags import (
                    ApplicationFlag
