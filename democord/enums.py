@@ -91,6 +91,13 @@ class AuditLogEvent(Enum):
   home_settings_update                        = 191
 
 
+class AutomodActionType(Enum):
+  block_message            = 1
+  send_alert_message       = 2
+  timeout                  = 3
+  block_member_interaction = 4
+
+
 class AutomodRuleEventType(Enum):
   message_send  = 1
   member_update = 2
