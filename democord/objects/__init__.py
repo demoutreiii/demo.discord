@@ -1,6 +1,7 @@
 from .activity_instance       import ActivityInstanceObject
 from .activity_location       import ActivityLocationObject
 from .application             import ApplicationObject
+from .audit_entry_info        import OptionalAuditEntryInfoObject
 from .audit_log               import AuditLogObject
 from .audit_log_entry         import AuditLogEntryObject
 from .install_params          import InstallParamsObject
