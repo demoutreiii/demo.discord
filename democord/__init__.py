@@ -11,6 +11,7 @@ from .enums import (
                    VideoQualityMode
                    )
 from .flags import (
-                   ApplicationFlag
+                   ApplicationFlag,
+                   ChannelFlag
                    )
 from typing import TYPE_CHECKING

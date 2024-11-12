@@ -13,3 +13,9 @@ class ApplicationFlag(IntFlag):
   gateway_message_content                       = 1 << 18
   gateway_message_content_limited               = 1 << 19
   application_command_badge                     = 1 << 23
+
+
+class ChannelFlag(IntFlag):
+  pinned                      = 1 <<  1
+  require_tag                 = 1 <<  4
+  hide_media_download_options = 1 << 15
