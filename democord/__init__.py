@@ -6,6 +6,7 @@ from .enums import (
                    AutomodActionType,
                    AutomodRuleEventType,
                    AutomodRuleTriggerType,
+                   ChannelType,
                    KeywordPresetType
                    )
 from .flags import (

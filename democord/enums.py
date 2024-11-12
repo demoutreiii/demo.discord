@@ -111,6 +111,22 @@ class AutomodRuleTriggerType(Enum):
   member_profile = 6
 
 
+class ChannelType(Enum):
+  text                =  0
+  dm                  =  1
+  voice               =  2
+  group_dm            =  3
+  category            =  4
+  announcement        =  5
+  announcement_thread = 10
+  public_thread       = 11
+  private_thread      = 12
+  stage               = 13
+  directory           = 14
+  forum               = 15
+  media               = 16
+
+
 class KeywordPresetType(Enum):
   profanity      = 1
   sexual_content = 2
