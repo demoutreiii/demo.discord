@@ -12,4 +12,5 @@ from .channel                         import ChannelObject
 from .followed_channel                import FollowedChannelObject
 from .install_params                  import InstallParamsObject
 from .integration_type_config         import ApplicationIntegrationTypeConfigObject
+from .overwrite                       import OverwriteObject
 from .trigger_metadata                import TriggerMetadataObject
