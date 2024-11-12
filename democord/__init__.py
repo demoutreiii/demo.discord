@@ -8,6 +8,7 @@ from .enums import (
                    AutomodRuleTriggerType,
                    ChannelType,
                    KeywordPresetType,
+                   SortOrderType,
                    VideoQualityMode
                    )
 from .flags import (

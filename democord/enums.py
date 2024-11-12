@@ -133,6 +133,11 @@ class KeywordPresetType(Enum):
   slurs          = 3
 
 
+class SortOrderType(Enum):
+  latest_activity = 0
+  creation_date   = 1
+
+
 class VideoQualityMode(Enum):
   auto = 1
   full = 2
