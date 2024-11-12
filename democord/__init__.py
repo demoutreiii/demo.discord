@@ -7,7 +7,8 @@ from .enums import (
                    AutomodRuleEventType,
                    AutomodRuleTriggerType,
                    ChannelType,
-                   KeywordPresetType
+                   KeywordPresetType,
+                   VideoQualityMode
                    )
 from .flags import (
                    ApplicationFlag

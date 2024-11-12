@@ -131,3 +131,8 @@ class KeywordPresetType(Enum):
   profanity      = 1
   sexual_content = 2
   slurs          = 3
+
+
+class VideoQualityMode(Enum):
+  auto = 1
+  full = 2
