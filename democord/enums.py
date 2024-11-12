@@ -127,6 +127,12 @@ class ChannelType(Enum):
   media               = 16
 
 
+class ForumLayoutType(Enum):
+  not_set      = 0
+  list_view    = 1
+  gallery_view = 2
+
+
 class KeywordPresetType(Enum):
   profanity      = 1
   sexual_content = 2

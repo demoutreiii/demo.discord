@@ -7,6 +7,7 @@ from .enums import (
                    AutomodRuleEventType,
                    AutomodRuleTriggerType,
                    ChannelType,
+                   ForumLayoutType,
                    KeywordPresetType,
                    SortOrderType,
                    VideoQualityMode
