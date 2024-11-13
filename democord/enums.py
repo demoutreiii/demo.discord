@@ -132,6 +132,12 @@ class DefaultMessageNotification(Enum):
   only_mentions = 1
 
 
+class ExplicitContentFilter(Enum):
+  disabled              = 0
+  members_without_roles = 1
+  all_members           = 2
+
+
 class ForumLayoutType(Enum):
   not_set      = 0
   list_view    = 1

@@ -8,6 +8,7 @@ from .enums import (
                    AutomodRuleTriggerType,
                    ChannelType,
                    DefaultMessageNotification,
+                   ExplicitContentFilter,
                    ForumLayoutType,
                    KeywordPresetType,
                    SortOrderType,
