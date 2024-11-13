@@ -127,6 +127,11 @@ class ChannelType(Enum):
   media               = 16
 
 
+class DefaultMessageNotification(Enum):
+  all_messages  = 0
+  only_mentions = 1
+
+
 class ForumLayoutType(Enum):
   not_set      = 0
   list_view    = 1
