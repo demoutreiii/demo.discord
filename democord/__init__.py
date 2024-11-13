@@ -13,6 +13,7 @@ from .enums import (
                    KeywordPresetType,
                    MFALevel,
                    SortOrderType,
+                   VerificationLevel,
                    VideoQualityMode
                    )
 from .flags import (

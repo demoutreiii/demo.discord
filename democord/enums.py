@@ -160,6 +160,14 @@ class SortOrderType(Enum):
   creation_date   = 1
 
 
+class VerificationLevel(Enum):
+  none      = 0
+  low       = 1
+  medium    = 2
+  high      = 3
+  very_high = 4
+
+
 class VideoQualityMode(Enum):
   auto = 1
   full = 2
