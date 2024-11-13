@@ -13,6 +13,7 @@ from .default_reaction                import DefaultReactionObject
 from .emoji                           import EmojiObject
 from .followed_channel                import FollowedChannelObject
 from .forum_tag                       import ForumTagObject
+from .guild                           import GuildObject
 from .install_params                  import InstallParamsObject
 from .integration_type_config         import ApplicationIntegrationTypeConfigObject
 from .overwrite                       import OverwriteObject
