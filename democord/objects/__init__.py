@@ -10,6 +10,7 @@ from .auto_moderation_action_metadata import AutoModerationActionMetadataObject
 from .auto_moderation_rule            import AutoModerationRuleObject
 from .channel                         import ChannelObject
 from .default_reaction                import DefaultReactionObject
+from .emoji                           import EmojiObject
 from .followed_channel                import FollowedChannelObject
 from .forum_tag                       import ForumTagObject
 from .install_params                  import InstallParamsObject
