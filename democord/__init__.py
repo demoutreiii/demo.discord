@@ -13,6 +13,7 @@ from .enums import (
                    KeywordPresetType,
                    MFALevel,
                    NSFWLevel,
+                   PremiumTier,
                    SortOrderType,
                    VerificationLevel,
                    VideoQualityMode

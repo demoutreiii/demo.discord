@@ -162,6 +162,13 @@ class NSFWLevel(Enum):
   age_restricted = 3
 
 
+class PremiumTier(Enum):
+  none   = 0
+  tier_1 = 1
+  tier_2 = 2
+  tier_3 = 3
+
+
 class SortOrderType(Enum):
   latest_activity = 0
   creation_date   = 1
