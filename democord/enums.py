@@ -150,6 +150,11 @@ class KeywordPresetType(Enum):
   slurs          = 3
 
 
+class MFALevel(Enum):
+  none     = 0
+  elevated = 1
+
+
 class SortOrderType(Enum):
   latest_activity = 0
   creation_date   = 1
