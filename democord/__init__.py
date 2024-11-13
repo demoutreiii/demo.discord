@@ -10,6 +10,7 @@ from .enums import (
                    DefaultMessageNotification,
                    ExplicitContentFilter,
                    ForumLayoutType,
+                   GuildFeature,
                    KeywordPresetType,
                    MFALevel,
                    NSFWLevel,

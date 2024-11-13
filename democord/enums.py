@@ -144,6 +144,38 @@ class ForumLayoutType(Enum):
   gallery_view = 2
 
 
+class GuildFeature(StrEnum):
+  animated_banner                           = auto()
+  animated_icon                             = auto()
+  application_command_permissions_v2        = auto()
+  auto_moderation                           = auto()
+  banner                                    = auto()
+  community                                 = auto()
+  creator_monetizable_provisional           = auto()
+  creator_store_page                        = auto()
+  developer_support_server                  = auto()
+  discoverable                              = auto()
+  featurable                                = auto()
+  invites_disabled                          = auto()
+  invite_splash                             = auto()
+  member_verification_gate_enabled          = auto()
+  more_soundboard                           = auto()
+  more_stickers                             = auto()
+  news                                      = auto()
+  partnered                                 = auto()
+  preview_enabled                           = auto()
+  raid_alerts_enabled                       = auto()
+  role_icons                                = auto()
+  role_subscriptions_available_for_purchase = auto()
+  role_subscriptions_enabled                = auto()
+  soundboard                                = auto()
+  ticketed_events_enabled                   = auto()
+  vanity_url                                = auto()
+  verified                                  = auto()
+  vip_regions                               = auto()
+  welcome_screen_enabled                    = auto()
+
+
 class KeywordPresetType(Enum):
   profanity      = 1
   sexual_content = 2
