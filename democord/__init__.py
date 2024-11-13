@@ -12,6 +12,7 @@ from .enums import (
                    ForumLayoutType,
                    KeywordPresetType,
                    MFALevel,
+                   NSFWLevel,
                    SortOrderType,
                    VerificationLevel,
                    VideoQualityMode

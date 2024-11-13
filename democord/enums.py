@@ -155,6 +155,13 @@ class MFALevel(Enum):
   elevated = 1
 
 
+class NSFWLevel(Enum):
+  default        = 0
+  explicit       = 1
+  safe           = 2
+  age_restricted = 3
+
+
 class SortOrderType(Enum):
   latest_activity = 0
   creation_date   = 1
