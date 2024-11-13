@@ -20,6 +20,7 @@ from .enums import (
                    )
 from .flags import (
                    ApplicationFlag,
-                   ChannelFlag
+                   ChannelFlag,
+                   SystemChannelFlag
                    )
 from typing import TYPE_CHECKING
