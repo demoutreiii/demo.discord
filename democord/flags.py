@@ -21,6 +21,18 @@ class ChannelFlag(IntFlag):
   hide_media_download_options = 1 << 15
 
 
+class MemberFlag(IntFlag):
+  did_rejoin                      = 1 << 0
+  completed_onboarding            = 1 << 1
+  bypasses_verification           = 1 << 2
+  started_onboarding              = 1 << 3
+  is_guest                        = 1 << 4
+  started_home_acitons            = 1 << 5
+  completed_home_actions          = 1 << 6
+  automod_quarantined_username    = 1 << 7
+  dm_settings_upsell_acknowledged = 1 << 9
+
+
 class SystemChannelFlag(IntFlag):
   suppress_join_notifications                              = 1 << 0
   suppress_premium_subscriptions                           = 1 << 1

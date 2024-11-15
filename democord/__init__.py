@@ -22,6 +22,7 @@ from .enums import (
 from .flags import (
                    ApplicationFlag,
                    ChannelFlag,
+                   MemberFlag,
                    SystemChannelFlag
                    )
 from typing import TYPE_CHECKING
