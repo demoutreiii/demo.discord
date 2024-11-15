@@ -29,3 +29,4 @@ from .thread_member                   import ThreadMemberObject
 from .thread_metadata                 import ThreadMetadataObject
 from .trigger_metadata                import TriggerMetadataObject
 from .unavailable_guild               import UnavailableGuildObject
+from .welcome_screen                  import WelcomeScreenObject
