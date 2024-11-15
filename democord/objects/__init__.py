@@ -8,6 +8,7 @@ from .audit_log_entry                 import AuditLogEntryObject
 from .auto_moderation_action          import AutoModerationActionObject
 from .auto_moderation_action_metadata import AutoModerationActionMetadataObject
 from .auto_moderation_rule            import AutoModerationRuleObject
+from .ban                             import BanObject
 from .channel                         import ChannelObject
 from .default_reaction                import DefaultReactionObject
 from .emoji                           import EmojiObject
