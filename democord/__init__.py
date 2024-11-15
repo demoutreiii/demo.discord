@@ -11,6 +11,7 @@ from .enums import (
                    ExplicitContentFilter,
                    ForumLayoutType,
                    GuildFeature,
+                   IntegrationExpireBehavior,
                    KeywordPresetType,
                    MFALevel,
                    NSFWLevel,

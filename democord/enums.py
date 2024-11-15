@@ -176,6 +176,11 @@ class GuildFeature(StrEnum):
   welcome_screen_enabled                    = auto()
 
 
+class IntegrationExpireBehavior(Enum):
+  remove_role = 0
+  kick        = 1
+
+
 class KeywordPresetType(Enum):
   profanity      = 1
   sexual_content = 2
