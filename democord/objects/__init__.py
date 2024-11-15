@@ -14,6 +14,7 @@ from .emoji                           import EmojiObject
 from .followed_channel                import FollowedChannelObject
 from .forum_tag                       import ForumTagObject
 from .guild                           import GuildObject
+from .guild_member                    import GuildMemberObject
 from .guild_preview                   import GuildPreviewObject
 from .guild_widget                    import GuildWidgetObject
 from .guild_widget_settings           import GuildWidgetSettingsObject
