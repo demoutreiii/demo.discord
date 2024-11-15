@@ -15,6 +15,7 @@ from .followed_channel                import FollowedChannelObject
 from .forum_tag                       import ForumTagObject
 from .guild                           import GuildObject
 from .guild_preview                   import GuildPreviewObject
+from .guild_widget                    import GuildWidgetObject
 from .guild_widget_settings           import GuildWidgetSettingsObject
 from .install_params                  import InstallParamsObject
 from .integration_type_config         import ApplicationIntegrationTypeConfigObject
