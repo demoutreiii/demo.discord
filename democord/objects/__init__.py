@@ -20,6 +20,7 @@ from .guild_widget                    import GuildWidgetObject
 from .guild_widget_settings           import GuildWidgetSettingsObject
 from .install_params                  import InstallParamsObject
 from .integration                     import IntegrationObject
+from .integration_account             import IntegrationAccountObject
 from .integration_type_config         import ApplicationIntegrationTypeConfigObject
 from .overwrite                       import OverwriteObject
 from .thread_member                   import ThreadMemberObject
