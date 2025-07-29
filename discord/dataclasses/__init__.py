@@ -1,2 +1,3 @@
+from .application import Application
 from .application_role_connection_metadata import ApplicationRoleConnectionMetadata
 from .snowflake import Snowflake
