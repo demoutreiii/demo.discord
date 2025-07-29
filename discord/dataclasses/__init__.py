@@ -1,4 +1,5 @@
 from .application import Application
 from .application_integration_type_configuration import ApplicationIntegrationTypeConfiguration
 from .application_role_connection_metadata import ApplicationRoleConnectionMetadata
+from .install_params import InstallParams
 from .snowflake import Snowflake
