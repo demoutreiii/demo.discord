@@ -100,8 +100,8 @@ class Application(dict):
 
 
   @property
-  def integration_types_config(self) -> Optional[dict[ApplicationIntegrationType, Optional[ApplicationIntegrationTypeConfiguration]]]:
-    return { integration_type: (ApplicationIntegrationTypeConfiguration(integration_type_config) if "oauth2_install_params" in integration_type_config else None) for integration_type, integration_type_config in self.__data["integration_types_config"].items() } if "integration_types_config" in self.__data else None
+  def integration_types_config(self) -> Optional[dict[ApplicationIntegrationType, ApplicationIntegrationTypeConfiguration]]:
+    return { integration_type: ApplicationIntegrationTypeConfiguration(integration_type_config) for integration_type, integration_type_config in self.__data["integration_types_config"].items() } if "integration_types_config" in self.__data else None
 
 
   @property
