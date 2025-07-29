@@ -1,3 +1,4 @@
+from .activity_instance import ActivityInstance
 from .application import Application
 from .application_integration_type_configuration import ApplicationIntegrationTypeConfiguration
 from .application_role_connection_metadata import ApplicationRoleConnectionMetadata
