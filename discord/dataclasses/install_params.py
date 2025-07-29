@@ -1,4 +1,4 @@
-class InstallParams:
+class InstallParams(dict):
   def __init__(self, data: dict[str, ...]) -> None:
     self.__data: dict[str, ...] = data
 
