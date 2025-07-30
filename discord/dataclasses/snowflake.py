@@ -10,12 +10,12 @@ class Snowflake(int):
 
   @property
   def created_at(self) -> datetime:
-    return datetime.fromtimestamp((self.__value >> 22) + self._DISCORD_EPOCH)
+    return datetime.fromtimestamp(((self.__value >> 22) + self._DISCORD_EPOCH) // 1_000)
 
 
   @classmethod
   def from_timestamp(cls: Self, timestamp: Union[int, float]) -> Self:
-    return cls((timestamp - 1420070400000) << 22)
+    return cls(((int(timestamp) * 1_000) - 1420070400000) << 22)
 
 
   @property
