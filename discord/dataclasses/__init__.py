@@ -6,4 +6,5 @@ from .application_role_connection_metadata import ApplicationRoleConnectionMetad
 from .audit_log import AuditLog
 from .audit_log_entry import AuditLogEntry
 from .install_params import InstallParams
+from .optional_audit_entry_info import OptionalAuditEntryInfo
 from .snowflake import Snowflake
