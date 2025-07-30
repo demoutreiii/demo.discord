@@ -4,5 +4,6 @@ from .application import Application
 from .application_integration_type_configuration import ApplicationIntegrationTypeConfiguration
 from .application_role_connection_metadata import ApplicationRoleConnectionMetadata
 from .audit_log import AuditLog
+from .audit_log_entry import AuditLogEntry
 from .install_params import InstallParams
 from .snowflake import Snowflake
