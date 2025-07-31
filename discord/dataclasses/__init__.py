@@ -6,6 +6,7 @@ from .application_role_connection_metadata import ApplicationRoleConnectionMetad
 from .audit_log import AuditLog
 from .audit_log_change import AuditLogChange
 from .audit_log_entry import AuditLogEntry
+from .auto_moderation_rule import AutoModerationRule
 from .install_params import InstallParams
 from .optional_audit_entry_info import OptionalAuditEntryInfo
 from .snowflake import Snowflake
