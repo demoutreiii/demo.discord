@@ -1,3 +1,6 @@
+from typing import Optional
+
+
 class ThreadMetadata(dict):
   def __init__(self, data: dict[str, ...]) -> None:
     self.__data: dict[str, ...] = data
