@@ -5,4 +5,5 @@ from .audit_log_entry import AuditLogEntry
 from .auto_moderation_action import AutoModerationAction
 from .auto_moderation_rule import AutoModerationRule
 from .channel import Channel
+from .permission_overwrite import PermissionOverwrite
 from .snowflake import Snowflake
