@@ -7,6 +7,7 @@ from .audit_log import AuditLog
 from .audit_log_change import AuditLogChange
 from .audit_log_entry import AuditLogEntry
 from .auto_moderation_action import AutoModerationAction
+from .auto_moderation_action_metadata import AutoModerationActionMetadata
 from .auto_moderation_rule import AutoModerationRule
 from .auto_moderation_rule_trigger_metadata import AutoModerationRuleTriggerMetadata
 from .install_params import InstallParams
