@@ -8,6 +8,7 @@ from .channel import Channel
 from .emoji import Emoji
 from .entitlement import Entitlement
 from .forum_tag import ForumTag
+from .guild_scheduled_event import GuildScheduledEvent
 from .permission_overwrite import PermissionOverwrite
 from .snowflake import Snowflake
 from .thread_member import ThreadMember
