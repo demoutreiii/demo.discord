@@ -23,6 +23,7 @@ if TYPE_CHECKING:
   from .auto_moderation_rule_trigger_metadata import AutoModerationRuleTriggerMetadata
   from .default_reaction import DefaultReaction
   from .followed_channel import FollowedChannel
+  from .guild_scheduled_event_entity_metadata import GuildScheduledEventEntityMetadata
   from .install_params import InstallParams
   from .optional_audit_entry_info import OptionalAuditEntryInfo
   from .thread_metadata import ThreadMetadata
