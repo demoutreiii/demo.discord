@@ -6,6 +6,7 @@ from .auto_moderation_action import AutoModerationAction
 from .auto_moderation_rule import AutoModerationRule
 from .channel import Channel
 from .emoji import Emoji
+from .entitlement import Entitlement
 from .forum_tag import ForumTag
 from .permission_overwrite import PermissionOverwrite
 from .snowflake import Snowflake
