@@ -4,30 +4,26 @@ from typing import Optional
 
 
 class ThreadMember(dict):
-  def __init__(self, data: dict[str, ...]) -> None:
-    self.__data: dict[str, ...] = data
-
-
   @property
   def flags(self) -> int:
-    return self.__data["flags"]
+    return self["flags"]
 
 
   @property
   def id(self) -> Optional[Snowflake]:
-    return Snowflake(self.__data["id"]) if "id" in self.__data else None
+    return Snowflake(self["id"]) if "id" in self else None
 
 
   @property
   def join_timestamp(self) -> int:
-    return self.__data["join_timestamp"]
+    return self["join_timestamp"]
 
 
   @property
   def member(self) -> Optional[GuildMember]:
-    return GuildMember(self.__data["member"]) if "member" in self.__data else None
+    return GuildMember(self["member"]) if "member" in self else None
 
 
   @property
   def user_id(self) -> Optional[Snowflake]:
-    return Snowflake(self.__data["user_id"]) if "user_id" in self.__data else None
+    return Snowflake(self["user_id"]) if "user_id" in self else None
