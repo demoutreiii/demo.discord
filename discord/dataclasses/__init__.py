@@ -10,6 +10,7 @@ from .entitlement import Entitlement
 from .forum_tag import ForumTag
 from .guild_scheduled_event import GuildScheduledEvent
 from .guild_scheduled_event_recurrence_rule import GuildScheduledEventRecurrenceRule
+from .guild_template import GuildTemplate
 from .permission_overwrite import PermissionOverwrite
 from .snowflake import Snowflake
 from .thread_member import ThreadMember
