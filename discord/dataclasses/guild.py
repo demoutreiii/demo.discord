@@ -207,6 +207,11 @@ class Guild(dict):
 
 
   @property
+  def unavailable(self) -> bool:
+    return self.get("unavailable", False)
+
+
+  @property
   def vanity_url_code(self) -> Optional[str]:
     return self["vanity_url_code"]
 
