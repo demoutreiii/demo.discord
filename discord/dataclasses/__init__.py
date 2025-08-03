@@ -1,32 +1,30 @@
+from .activity_instance import ActivityInstance
+from .activity_location import ActivityLocation
 from .application import Application
+from .application_integration_type_configuration import ApplicationIntegrationTypeConfiguration
+from .application_role_connection_metadata import ApplicationRoleConnectionMetadata
 from .audit_log import AuditLog
 from .audit_log_change import AuditLogChange
 from .audit_log_entry import AuditLogEntry
 from .auto_moderation_action import AutoModerationAction
+from .auto_moderation_action_metadata import AutoModerationActionMetadata
 from .auto_moderation_rule import AutoModerationRule
+from .auto_moderation_rule_trigger_metadata import AutoModerationRuleTriggerMetadata
 from .channel import Channel
+from .default_reaction import DefaultReaction
 from .emoji import Emoji
 from .entitlement import Entitlement
+from .followed_channel import FollowedChannel
 from .forum_tag import ForumTag
+from .guild import Guild
 from .guild_scheduled_event import GuildScheduledEvent
+from .guild_scheduled_event_entity_metadata import GuildScheduledEventEntityMetadata
 from .guild_scheduled_event_recurrence_rule import GuildScheduledEventRecurrenceRule
+from .guild_scheduled_event_user import GuildScheduledEventUser
 from .guild_template import GuildTemplate
+from .install_params import InstallParams
+from .optional_audit_entry_info import OptionalAuditEntryInfo
 from .permission_overwrite import PermissionOverwrite
 from .snowflake import Snowflake
 from .thread_member import ThreadMember
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-  from .activity_instance import ActivityInstance
-  from .activity_location import ActivityLocation
-  from .application_integration_type_configuration import ApplicationIntegrationTypeConfiguration
-  from .application_role_connection_metadata import ApplicationRoleConnectionMetadata
-  from .auto_moderation_action_metadata import AutoModerationActionMetadata
-  from .auto_moderation_rule_trigger_metadata import AutoModerationRuleTriggerMetadata
-  from .default_reaction import DefaultReaction
-  from .followed_channel import FollowedChannel
-  from .guild_scheduled_event_entity_metadata import GuildScheduledEventEntityMetadata
-  from .guild_scheduled_event_user import GuildScheduledEventUser
-  from .install_params import InstallParams
-  from .optional_audit_entry_info import OptionalAuditEntryInfo
-  from .thread_metadata import ThreadMetadata
+from .thread_metadata import ThreadMetadata
