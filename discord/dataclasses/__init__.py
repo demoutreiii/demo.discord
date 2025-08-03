@@ -23,6 +23,7 @@ from .guild_scheduled_event_entity_metadata import GuildScheduledEventEntityMeta
 from .guild_scheduled_event_recurrence_rule import GuildScheduledEventRecurrenceRule
 from .guild_scheduled_event_user import GuildScheduledEventUser
 from .guild_template import GuildTemplate
+from .guild_widget_settings import GuildWidgetSettings
 from .install_params import InstallParams
 from .optional_audit_entry_info import OptionalAuditEntryInfo
 from .permission_overwrite import PermissionOverwrite
