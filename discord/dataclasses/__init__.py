@@ -36,3 +36,4 @@ from .permission_overwrite import PermissionOverwrite
 from .snowflake import Snowflake
 from .thread_member import ThreadMember
 from .thread_metadata import ThreadMetadata
+from .welcome_screen import WelcomeScreen
