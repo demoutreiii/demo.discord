@@ -28,6 +28,7 @@ from .guild_scheduled_event_user import GuildScheduledEventUser
 from .guild_template import GuildTemplate
 from .guild_widget import GuildWidget
 from .guild_widget_settings import GuildWidgetSettings
+from .incidents_data import IncidentsData
 from .install_params import InstallParams
 from .integration import Integration
 from .integration_account import IntegrationAccount
