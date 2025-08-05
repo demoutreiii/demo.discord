@@ -37,3 +37,4 @@ from .snowflake import Snowflake
 from .thread_member import ThreadMember
 from .thread_metadata import ThreadMetadata
 from .welcome_screen import WelcomeScreen
+from .welcome_screen_channel import WelcomeScreenChannel
