@@ -3,6 +3,7 @@ from .integration_account import IntegrationAccount
 from .integration_application import IntegrationApplication
 from .snowflake import Snowflake
 from .user import User
+from datetime import datetime
 from typing import Optional
 
 
@@ -68,8 +69,8 @@ class Integration(dict):
 
 
   @property
-  def synced_at(self) -> Optional[int]:
-    return self.get("synced_at")
+  def synced_at(self) -> Optional[datetime]:
+    return datetime.fromisoformat(self["synced_at"]) if "synced_at" in self else None
 
 
   @property

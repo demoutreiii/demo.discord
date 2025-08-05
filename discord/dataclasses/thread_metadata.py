@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Optional
 
 
@@ -8,8 +9,8 @@ class ThreadMetadata(dict):
 
 
   @property
-  def archive_tiemstamp(self) -> int:
-    return self["archive_timestamp"]
+  def archive_tiemstamp(self) -> datetime:
+    return datetime.fromisoformat(self["archive_timestamp"])
 
 
   @property
@@ -18,8 +19,8 @@ class ThreadMetadata(dict):
 
 
   @property
-  def create_timestamp(self) -> Optional[int]:
-    return self.get("create_timestamp")
+  def create_timestamp(self) -> Optional[datetime]:
+    return datetime.fromisoformat(self.get("create_timestamp")) if self.get("create_timestamp") is not None else None
 
 
   @property

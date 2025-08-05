@@ -7,6 +7,7 @@ from .snowflake import Snowflake
 from .thread_member import ThreadMember
 from .thread_metadata import ThreadMetadata
 from .user import User
+from datetime import datetime
 from typing import Optional
 
 
@@ -82,8 +83,8 @@ class Channel(dict):
 
 
   @property
-  def last_pin_timestamp(self) -> Optional[int]:
-    return self.get("last_pin_timestamp")
+  def last_pin_timestamp(self) -> Optional[datetime]:
+    return datetime.fromisoformat(self.get("last_pin_timestamp")) if self.get("last_pin_timestamp") is not None else None
 
 
   @property

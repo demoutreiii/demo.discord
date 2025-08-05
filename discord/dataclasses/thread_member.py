@@ -1,5 +1,6 @@
 from .guild_member import GuildMember
 from .snowflake import Snowflake
+from .datetime import datetime
 from typing import Optional
 
 
@@ -15,8 +16,8 @@ class ThreadMember(dict):
 
 
   @property
-  def join_timestamp(self) -> int:
-    return self["join_timestamp"]
+  def join_timestamp(self) -> datetime:
+    return datetime.fromisoformat(self["join_timestamp"])
 
 
   @property

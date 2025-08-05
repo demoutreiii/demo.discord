@@ -1,5 +1,6 @@
 from ..enums import EntitlementType
 from .snowflake import Snowflake
+from datetime import datetime
 from typing import Optional
 
 
@@ -20,8 +21,8 @@ class Entitlement(dict):
   
   
   @property
-  def ends_at(self) -> Optional[int]:
-    return self["ends_at"]
+  def ends_at(self) -> Optional[datetime]:
+    return datetime.fromisoformat(self["ends_at"]) if self["ends_at"] is not None else None
   
   
   @property
@@ -40,8 +41,8 @@ class Entitlement(dict):
 
 
   @property
-  def starts_at(self) -> Optional[int]:
-    return self["starts_at"]
+  def starts_at(self) -> Optional[datetime]:
+    return datetime.fromisoformat(self["starts_at"]) if self["starts_at"] is not None else None
 
 
   @property

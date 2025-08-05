@@ -1,6 +1,7 @@
 from .guild import Guild
 from .snowflake import Snowflake
 from .user import User
+from datetime import datetime
 from typing import Optional
 
 
@@ -11,8 +12,8 @@ class GuildTemplate(dict):
 
 
   @property
-  def created_at(self) -> int:
-    return self["created_at"]
+  def created_at(self) -> datetime:
+    return datetime.fromisoformat(self["created_at"])
 
 
   @property
@@ -51,8 +52,8 @@ class GuildTemplate(dict):
 
 
   @property
-  def updated_at(self) -> int:
-    return self["updated_at"]
+  def updated_at(self) -> datetime:
+    return datetime.fromisoformat(self["updated_at"])
 
 
   @property

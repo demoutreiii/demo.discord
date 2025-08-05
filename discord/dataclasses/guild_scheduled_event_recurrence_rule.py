@@ -1,4 +1,5 @@
 from ..enums import GuildScheduledEventRecurrenceRuleFrequency, GuildScheduledEventRecurrenceRuleMonth, GuildScheduledEventRecurrenceRuleNWeekday, GuildScheduledEventRecurrenceRuleWeekday
+from datetime import datetime
 from typing import Optional
 
 
@@ -34,8 +35,8 @@ class GuildScheduledEventRecurrenceRule(dict):
   
   
   @property
-  def end(self) -> Optional[int]:
-    return self["end"]
+  def end(self) -> Optional[datetime]:
+    return datetime.fromisoformat(self["end"]) if self["end"] is not None else None
 
 
   @property
@@ -49,5 +50,5 @@ class GuildScheduledEventRecurrenceRule(dict):
   
   
   @property
-  def start(self) -> int:
-    return self["start"]
+  def start(self) -> datetime:
+    return datetime.fromisoformat(self["start"])

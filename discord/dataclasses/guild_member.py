@@ -3,6 +3,7 @@ from .asset import Asset
 from .avatar_decoration_data import AvatarDecorationData
 from .snowflake import Snowflake
 from .user import User
+from datetime import datetime
 from typing import Optional
 
 
@@ -23,8 +24,8 @@ class GuildMember(dict):
 
 
   @property
-  def communication_disabled_until(self) -> Optional[int]:
-    return self.get("communication_disabled_until")
+  def communication_disabled_until(self) -> Optional[datetime]:
+    return datetime.fromisoformat(self.get("communication_disabled_until")) if self.get("communication_disabled_until") is not None else None
 
 
   @property
@@ -38,8 +39,8 @@ class GuildMember(dict):
   
   
   @property
-  def joined_at(self) -> Optional[int]:
-    return self["joined_at"]
+  def joined_at(self) -> Optional[datetime]:
+    return datetime.fromisoformat(self["joined_at"]) if self["joined_at"] is not None else None
 
 
   @property
@@ -63,8 +64,8 @@ class GuildMember(dict):
   
   
   @property
-  def premium_since(self) -> Optional[int]:
-    return self.get("premium_since")
+  def premium_since(self) -> Optional[datetime]:
+    return datetime.fromisoformat(self.get("premium_since")) if self.get("premium_since") is not None else None
   
   
   @property

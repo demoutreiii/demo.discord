@@ -4,6 +4,7 @@ from .guild_scheduled_event_entity_metadata import GuildScheduledEventEntityMeta
 from .guild_scheduled_event_recurrence_rule import GuildScheduledEventRecurrenceRule
 from .snowflake import Snowflake
 from .user import User
+from datetime import datetime
 from typing import Optional
 
 
@@ -74,13 +75,13 @@ class GuildScheduledEvent(dict):
 
 
   @property
-  def scheduled_end_time(self) -> Optional[int]:
-    return self["scheduled_end_time"]
+  def scheduled_end_time(self) -> Optional[datetime]:
+    return datetime.fromisoformat(self["scheduled_end_time"]) if self["scheduled_end_time"] is not None else None
 
 
   @property
-  def scheduled_start_time(self) -> int:
-    return self["scheduled_start_time"]
+  def scheduled_start_time(self) -> datetime:
+    return datetime.fromisoformat(self["scheduled_start_time"])
 
 
   @property
