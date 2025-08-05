@@ -35,6 +35,7 @@ from .integration_application import IntegrationApplication
 from .onboarding_prompt import OnboardingPrompt
 from .optional_audit_entry_info import OptionalAuditEntryInfo
 from .permission_overwrite import PermissionOverwrite
+from .prompt_option import PromptOption
 from .snowflake import Snowflake
 from .thread_member import ThreadMember
 from .thread_metadata import ThreadMetadata
