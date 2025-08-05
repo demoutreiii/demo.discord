@@ -34,6 +34,7 @@ from .integration import Integration
 from .integration_account import IntegrationAccount
 from .integration_application import IntegrationApplication
 from .invite import Invite
+from .invite_metadata import InviteMetadata
 from .onboarding_prompt import OnboardingPrompt
 from .optional_audit_entry_info import OptionalAuditEntryInfo
 from .permission_overwrite import PermissionOverwrite
