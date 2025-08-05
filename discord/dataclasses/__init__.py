@@ -29,6 +29,7 @@ from .guild_widget_settings import GuildWidgetSettings
 from .install_params import InstallParams
 from .integration import Integration
 from .integration_account import IntegrationAccount
+from .integration_application import IntegrationApplication
 from .optional_audit_entry_info import OptionalAuditEntryInfo
 from .permission_overwrite import PermissionOverwrite
 from .snowflake import Snowflake
