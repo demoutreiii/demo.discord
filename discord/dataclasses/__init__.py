@@ -10,6 +10,7 @@ from .auto_moderation_action import AutoModerationAction
 from .auto_moderation_action_metadata import AutoModerationActionMetadata
 from .auto_moderation_rule import AutoModerationRule
 from .auto_moderation_rule_trigger_metadata import AutoModerationRuleTriggerMetadata
+from .ban import Ban
 from .channel import Channel
 from .default_reaction import DefaultReaction
 from .emoji import Emoji
