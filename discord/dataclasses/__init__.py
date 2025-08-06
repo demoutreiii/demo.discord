@@ -37,6 +37,7 @@ from .invite import Invite
 from .invite_metadata import InviteMetadata
 from .invite_stage_instance import InviteStageInstance
 from .lobby import Lobby
+from .lobby_member import LobbyMember
 from .onboarding_prompt import OnboardingPrompt
 from .optional_audit_entry_info import OptionalAuditEntryInfo
 from .permission_overwrite import PermissionOverwrite
