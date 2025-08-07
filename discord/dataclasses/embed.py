@@ -1,4 +1,5 @@
 from ..enums import EmbedType
+from ..exceptions import DiscordLimitExceeded
 from .embed_author import EmbedAuthor
 from .embed_field import EmbedField
 from .embed_footer import EmbedFooter
@@ -7,7 +8,7 @@ from .embed_thumbnail import EmbedThumbnail
 from .embed_provider import EmbedProvider
 from .embed_video import EmbedVideo
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Self
 
 
 class Embed(dict):
@@ -66,6 +67,19 @@ class Embed(dict):
   @property
   def footer(self) -> EmbedFooter:
     return EmbedFooter(self["footer"] if "footer" in self else {})
+
+
+  @footer.setter
+  def icon_url(self, value: Optional[str]) -> Optional[str]:
+    if value is None and self.footer.icon_url is not None: del self["footer"]["icon_url"]
+    else: self["footer"]["icon_url"]: Optional[str] = value if isinstance(value, str) else self.footer.icon_url
+    return self.footer.icon_url
+
+
+  @footer.setter
+  def text(self, value: str) -> str:
+    self["footer"]["text"]: str = value if isinstance(value, str) else self.footer.text
+    return self.footer.text
 
 
   @property
