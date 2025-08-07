@@ -40,6 +40,7 @@ from .lobby import Lobby
 from .lobby_member import LobbyMember
 from .message import Message
 from .message_activity import MessageActivity
+from .message_call import MessageCall
 from .message_interaction_metadata import MessageInteractionMetadata
 from .onboarding_prompt import OnboardingPrompt
 from .optional_audit_entry_info import OptionalAuditEntryInfo
