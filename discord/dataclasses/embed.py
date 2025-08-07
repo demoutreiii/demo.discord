@@ -80,12 +80,15 @@ class Embed(dict):
   @author.setter
   def icon_url(self, value: Optional[str]) -> Optional[str]:
     if value is None and self.author.icon_url is not None: del self["author"]["icon_url"]
-    else: self["author"]["icon_url"]: Optional[str] = value if isinstance(value, str) else self.author.icon_url
+    else:
+      assert isinstance(value, str), f"Author Icon URL must be of a string, not {value.__class__.__name__}"
+      self["author"]["icon_url"]: Optional[str] = value
     return self.author.icon_url
 
 
   @author.setter
   def name(self, value: Optional[str]) -> str:
+    if value is not None and isinstance(value, str) and 256 < len(value): raise DiscordLimitExceeded("Embed.author.name: Maximum of 256 characters.")
     self["author"]["name"]: str = value if value is not None and isinstance(value, str) else str()
     return self.author.name
 
@@ -93,32 +96,43 @@ class Embed(dict):
   @author.setter
   def url(self, value: Optional[str]) -> Optional[str]:
     if value is None and self.author.url is not None: del self["author"]["url"]
-    else: self["author"]["url"]: Optional[str] = value if isinstance(value, str) else self.author.url
+    else:
+      assert isinstance(value, str), f"Author URL must be of a string, not {value.__class__.__name__}"
+      self["author"]["url"]: Optional[str] = value
     return self.author.url
 
 
   @color.setter
   def color(self, value: Optional[int]) -> Optional[int]:
-    self["color"]: Optional[int] = value if isinstance(value, int) else self.color
+    if value is not None: assert isinstance(value, int), f"Color must be of a string, not {value.__class__.__name__}"
+    self["color"]: Optional[int] = value
     return self.color
 
 
   @description.setter
   def description(self, value: Optional[str]) -> Optional[str]:
-    self["description"]: Optional[str] = value if isinstance(value, str) else self.description
+    if value is not None:
+      assert isinstance(value, str), f"Description must be of a string, not {value.__class__.__name__}"
+      if 4_096 < len(value): raise DiscordLimitExceeded("Embed.description: Maximum of 4,096 characters.")
+    self["description"]: Optional[str] = value
     return self.description
 
 
   @footer.setter
   def icon_url(self, value: Optional[str]) -> Optional[str]:
     if value is None and self.footer.icon_url is not None: del self["footer"]["icon_url"]
-    else: self["footer"]["icon_url"]: Optional[str] = value if isinstance(value, str) else self.footer.icon_url
+    else:
+      assert isinstance(value, str), f"Footer Icon URL must be of a string, not {value.__class__.__name__}"
+      self["footer"]["icon_url"]: Optional[str] = value
     return self.footer.icon_url
 
 
   @footer.setter
-  def text(self, value: str) -> str:
-    self["footer"]["text"]: str = value if isinstance(value, str) else self.footer.text
+  def text(self, value: Optional[str]) -> str:
+    if text is not None:
+      assert isinstance(value, str), f"Footer text must be of a string, not {value.__class__.__name__}"
+      if 2_048 < len(value): raise DiscordLimitExceeded("Embed.footer.text: Maximum of 2,048 characters.")
+    self["footer"]["text"]: str = value if value is not None else str()
     return self.footer.text
 
 
@@ -136,26 +150,36 @@ class Embed(dict):
 
   @timestamp.setter
   def timestamp(self, value: Optional[datetime]) -> Optional[datetime]:
-    self["timestamp"]: Optional[str] = value.isoformat() if value is not None and isinstance(value, datetime) else None
+    if value is not None:
+      assert isinstance(value, datetime), f"Timestamp must be of a datetime.datetime object, not {value.__class__.__name__}"
+      self["timestamp"]: Optional[str] = value.isoformat()
+    else: self["timestamp"]: Optional[str] = None
     return self.timestamp
 
 
   @title.setter
   def title(self, value: Optional[str]) -> Optional[str]:
-    self["title"]: Optional[str] = value if isinstance(value, str) else self.title
+    if value is not None:
+      assert isinstance(value, str), f"Title must be of a string, not {value.__class__.__name__}"
+      if 256 < len(value): raise DiscordLimitExceeded("Embed.title: Maximum of 256 characters.")
+    self["title"]: Optional[str] = value
     return self.title
 
 
   @url.setter
   def url(self, value: Optional[str]) -> Optional[str]:
-    self["url"]: Optional[str] = value if isinstance(value, str) else self.url
+    if value is not None:
+      assert isinstance(value, str), f"URL must be of a string, not {value.__class__.__name__}"
+    self["url"]: Optional[str] = value
     return self.url
 
 
   @video.setter
   def url(self, value: Optional[str]) -> Optional[str]:
     if value is None and self.video.url is not None: del self["video"]["url"]
-    else: self["video"]["url"]: Optional[str] = value if isinstance(value, str) else None
+    else:
+      assert isinstance(value, str), f"Video URL must be of a string, not {value.__class__.__name__}"
+      self["video"]["url"]: Optional[str] = value
     return self.video.url
 
 
@@ -165,6 +189,8 @@ class Embed(dict):
     assert isinstance(name, str), f"Field name must be of a string, not {name.__class__.__name__}"
     assert isinstance(value, str), f"Field value must be of a string, not {value.__class__.__name__}"
     assert isinstance(inline, bool), f"Field inline must be of a boolean, not {inline.__class__.__name__}"
+    if 256 < len(name): raise DiscordLimitExceeded(f"Embed.fields[{len(self.fields)}].name: Maximum of 256 characters.")
+    if 1_024 < len(value): raise DiscordLimitExceeded(f"Embed.fields[{len(self.fields)}].value: Maximum of 1,024 characters.")
     field_data: dict[str, Union[str, bool]] = {
       "name": name,
       "value": value,
@@ -180,9 +206,11 @@ class Embed(dict):
     assert any(argument for argument in [name, value, inline] if argument is not Ellipsis), "One of 'name', 'value', and 'inline' arguments must be passed and specified."
     if name is not Ellipsis:
       assert isinstance(name, str), f"Field name must be of a string, not {name.__class__.__name__}"
+      if 256 < len(name): raise DiscordLimitExceeded(f"Embed.fields[{len(self.fields)}].name: Maximum of 256 characters.")
       self["fields"][index]["name"]: str = name
     if value is not Ellipsis:
       assert isinstance(value, str), f"Field value must be of a string, not {value.__class__.__name__}"
+      if 1_024 < len(value): raise DiscordLimitExceeded(f"Embed.fields[{len(self.fields)}].value: Maximum of 1,024 characters.")
       self["fields"][index]["value"]: str = value
     if inline is not Ellipsis:
       assert isinstance(inline, bool), f"Field inline must be of a boolean, not {inline.__class__.__name__}"
@@ -196,6 +224,8 @@ class Embed(dict):
     assert isinstance(name, str), f"Field name must be of a string, not {name.__class__.__name__}"
     assert isinstance(value, str), f"Field value must be of a string, not {value.__class__.__name__}"
     assert isinstance(inline, bool), f"Field inline must be of a boolean, not {inline.__class__.__name__}"
+    if 256 < len(name): raise DiscordLimitExceeded(f"Embed.fields[{len(self.fields)}].name: Maximum of 256 characters.")
+    if 1_024 < len(value): raise DiscordLimitExceeded(f"Embed.fields[{len(self.fields)}].value: Maximum of 1,024 characters.")
     field_data: dict[str, Union[str, bool]] = {
       "name": name,
       "value": value,
