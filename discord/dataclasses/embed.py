@@ -14,6 +14,26 @@ class Embed(dict):
   @property
   def author(self) -> EmbedAuthor:
     return EmbedAuthor(self["author"] if "author" in self else {})
+
+
+  @author.setter
+  def icon_url(self, value: Optional[str]) -> Optional[str]:
+    if value is None and self.author.icon_url is not None: del self["author"]["icon_url"]
+    else: self["author"]["icon_url"]: Optional[str] = value if isinstance(value, str) else self.author.icon_url
+    return self.author.icon_url
+
+
+  @author.setter
+  def name(self, value: Optional[str]) -> str:
+    self["author"]["name"]: str = value if value is not None and isinstance(value, str) else str()
+    return self.author.name
+
+
+  @author.setter
+  def url(self, value: Optional[str]) -> Optional[str]:
+    if value is None and self.author.url is not None: del self["author"]["url"]
+    else: self["author"]["url"]: Optional[str] = value if isinstance(value, str) else self.author.url
+    return self.author.url
   
   
   @property
@@ -23,7 +43,7 @@ class Embed(dict):
 
   @color.setter
   def color(self, value: Optional[int]) -> Optional[int]:
-    self["color"]: Optional[int] = value
+    self["color"]: Optional[int] = value if isinstance(value, int) else self.color
     return self.color
   
   
@@ -34,7 +54,7 @@ class Embed(dict):
 
   @description.setter
   def description(self, value: Optional[str]) -> Optional[str]:
-    self["description"]: Optional[str] = value
+    self["description"]: Optional[str] = value if isinstance(value, str) else self.description
     return self.description
 
 
@@ -53,6 +73,12 @@ class Embed(dict):
     return EmbedImage(self["image"] if "image" in self else {})
 
 
+  @image.setter
+  def url(self, value: Optional[str]) -> str:
+    self["image"]["url"]: str = value if value is not None and isinstance(value, str) else str()
+    return self.image.url
+
+
   @property
   def provider(self) -> EmbedProvider:
     return EmbedProvider(self["provider"] if "provider" in self else {})
@@ -61,6 +87,12 @@ class Embed(dict):
   @property
   def thumbnail(self) -> EmbedThumbnail:
     return EmbedThumbnail(self["thumbnail"] if "thumbnail" in self else {})
+
+
+  @thumbnail.setter
+  def url(self, value: Optional[str]) -> str:
+    self["thumbnail"]["url"]: str = value if value is not None and isinstance(value, str) else str()
+    return self.thumbnail.url
   
   
   @property
@@ -70,7 +102,7 @@ class Embed(dict):
 
   @timestamp.setter
   def timestamp(self, value: Optional[datetime]) -> Optional[datetime]:
-    self["timestamp"]: Optional[str] = value.isoformat() if value is not None else None
+    self["timestamp"]: Optional[str] = value.isoformat() if value is not None and isinstance(value, datetime) else None
     return self.timestamp
   
   
@@ -81,7 +113,7 @@ class Embed(dict):
 
   @title.setter
   def title(self, value: Optional[str]) -> Optional[str]:
-    self["title"]: Optional[str] = value
+    self["title"]: Optional[str] = value if isinstance(value, str) else self.title
     return self.title
 
 
@@ -97,10 +129,17 @@ class Embed(dict):
 
   @url.setter
   def url(self, value: Optional[str]) -> Optional[str]:
-    self["url"]: Optional[str] = value
+    self["url"]: Optional[str] = value if isinstance(value, str) else self.url
     return self.url
 
 
   @property
   def video(self) -> EmbedVideo:
     return EmbedVideo(self["video"] if "video" in self else {})
+
+
+  @video.setter
+  def url(self, value: Optional[str]) -> Optional[str]:
+    if value is None and self.video.url is not None: del self["video"]["url"]
+    else: self["video"]["url"]: Optional[str] = value if isinstance(value, str) else None
+    return self.video.url

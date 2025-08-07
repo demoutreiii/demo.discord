@@ -17,12 +17,6 @@ class EmbedThumbnail(dict):
     return self["url"]
 
 
-  @url.setter
-  def url(self, value: Optional[str]) -> str:
-    self["url"]: str = value if value is not None else str()
-    return self.url
-
-
   @property
   def width(self) -> Optional[int]:
     return self["width"] if "width" in self else None
