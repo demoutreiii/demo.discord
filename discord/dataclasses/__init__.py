@@ -14,6 +14,7 @@ from .ban import Ban
 from .channel import Channel
 from .default_reaction import DefaultReaction
 from .embed import Embed
+from .embed_thumbnail import EmbedThumbnail
 from .emoji import Emoji
 from .entitlement import Entitlement
 from .followed_channel import FollowedChannel
