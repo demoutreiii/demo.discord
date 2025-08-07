@@ -14,6 +14,7 @@ from .ban import Ban
 from .channel import Channel
 from .default_reaction import DefaultReaction
 from .embed import Embed
+from .embed_image import EmbedImage
 from .embed_thumbnail import EmbedThumbnail
 from .embed_video import EmbedVideo
 from .emoji import Emoji
