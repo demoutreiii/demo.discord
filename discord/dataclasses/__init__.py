@@ -13,6 +13,7 @@ from .auto_moderation_rule_trigger_metadata import AutoModerationRuleTriggerMeta
 from .ban import Ban
 from .channel import Channel
 from .default_reaction import DefaultReaction
+from .embed import Embed
 from .emoji import Emoji
 from .entitlement import Entitlement
 from .followed_channel import FollowedChannel
