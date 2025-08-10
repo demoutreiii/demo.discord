@@ -13,6 +13,7 @@ from .auto_moderation_rule import AutoModerationRule
 from .auto_moderation_rule_trigger_metadata import AutoModerationRuleTriggerMetadata
 from .ban import Ban
 from .channel import Channel
+from .channel_mention import ChannelMention
 from .default_reaction import DefaultReaction
 from .embed import Embed
 from .embed_author import EmbedAuthor
