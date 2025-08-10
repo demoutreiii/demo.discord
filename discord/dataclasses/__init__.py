@@ -1,5 +1,6 @@
 from .activity_instance import ActivityInstance
 from .activity_location import ActivityLocation
+from .allowed_mentions import AllowedMentions
 from .application import Application
 from .application_integration_type_configuration import ApplicationIntegrationTypeConfiguration
 from .application_role_connection_metadata import ApplicationRoleConnectionMetadata
