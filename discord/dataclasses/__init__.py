@@ -52,6 +52,7 @@ from .message import Message
 from .message_activity import MessageActivity
 from .message_call import MessageCall
 from .message_interaction_metadata import MessageInteractionMetadata
+from .message_pin import MessagePin
 from .message_reference import MessageReference
 from .message_snapshot import MessageSnapshot
 from .onboarding_prompt import OnboardingPrompt
