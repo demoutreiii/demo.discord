@@ -60,6 +60,7 @@ from .optional_audit_entry_info import OptionalAuditEntryInfo
 from .permission_overwrite import PermissionOverwrite
 from .poll import Poll
 from .poll_create_request import PollCreateRequest
+from .poll_media import PollMedia
 from .prompt_option import PromptOption
 from .reaction import Reaction
 from .reaction_count_details import ReactionCountDetails

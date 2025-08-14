@@ -1,8 +1,9 @@
 from ..enums import PollLayoutType
+from ..exceptions import DiscordLimitExceeded
 from .poll_answer import PollAnswer
 from .poll_media import PollMedia
 from datetime import timedelta
-from typing import Optional
+from typing import Optional, Self
 
 
 class PollCreateRequest(dict):
@@ -50,3 +51,11 @@ class PollCreateRequest(dict):
   @property
   def question(self) -> PollMedia:
     return PollMedia(self["question"])
+
+
+  @question.setter
+  def text(self, value: str) -> Self:
+    if not isinstance(value, str): raise TypeError(f"Poll.question.text must be of a string, not {value.__class__.__name__}")
+    if 300 < len(text): raise DiscordLimitExceeded("Poll.question.text has a maximum length of 300 characters.")
+    self["question"]["text"]: str = value
+    return self
