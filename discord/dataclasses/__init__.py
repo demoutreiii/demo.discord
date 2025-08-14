@@ -56,6 +56,7 @@ from .message_reference import MessageReference
 from .message_snapshot import MessageSnapshot
 from .onboarding_prompt import OnboardingPrompt
 from .optional_audit_entry_info import OptionalAuditEntryInfo
+from .role_subscription_data import RoleSubscriptionData
 from .permission_overwrite import PermissionOverwrite
 from .prompt_option import PromptOption
 from .reaction import Reaction
