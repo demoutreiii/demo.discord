@@ -57,11 +57,12 @@ from .message_reference import MessageReference
 from .message_snapshot import MessageSnapshot
 from .onboarding_prompt import OnboardingPrompt
 from .optional_audit_entry_info import OptionalAuditEntryInfo
-from .role_subscription_data import RoleSubscriptionData
 from .permission_overwrite import PermissionOverwrite
+from .poll import Poll
 from .prompt_option import PromptOption
 from .reaction import Reaction
 from .reaction_count_details import ReactionCountDetails
+from .role_subscription_data import RoleSubscriptionData
 from .snowflake import Snowflake
 from .thread_member import ThreadMember
 from .thread_metadata import ThreadMetadata
